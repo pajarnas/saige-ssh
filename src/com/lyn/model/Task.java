@@ -5,6 +5,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 
@@ -38,20 +40,33 @@ public class Task {
     @Column(name="_progress")
     private String progress;
     
+    @Column(name="_category")
+    private String category;
+    
     @Column(name="_message")
     private String message;
 	
-    @Column(name="_ptaskid")
-    private long ptaskid;
-	
-    @Column(name="_produceid")
-    private long produceid;
-    
-    @Column(name="_stockid")
-    private long stockid;
-    
+	@ManyToOne
+	@JoinColumn(name = "_uid")
+	private User user;
+
     @Column(name="_priority")
     private String priority;
+    
+    
+	/**
+	 * @return the user
+	 */
+	public User getUser() {
+		return user;
+	}
+
+	/**
+	 * @param user the user to set
+	 */
+	public void setUser(User user) {
+		this.user = user;
+	}
 
 	/**
 	 * @return the id
