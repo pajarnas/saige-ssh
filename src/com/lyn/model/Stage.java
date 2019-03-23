@@ -8,7 +8,7 @@ package com.lyn.model;
  * @date      2019-03-23
  *
  */
-public enum Stages {
+public enum Stage {
 		待用料,
 		待采购,
 		待采购入库,

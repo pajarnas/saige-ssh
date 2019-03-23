@@ -2,6 +2,8 @@ package com.lyn.model;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -9,7 +11,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.Transient;
-
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
 /**
  * @author    Yaning Liu
  *
@@ -21,52 +24,71 @@ import javax.persistence.Transient;
 
 
 @Entity
+@Inheritance(strategy = InheritanceType.JOINED)
 @Table(name="_Task")
 public class Task {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	@Column(name="_id",nullable=false,unique=true)
+	@Column(nullable=false,unique=true)
 	private long id;
 	
-	@Column(name="_name")
 	private String name;
-	
-	@Column(name="_quality")
-	private int quality;
     
-    @Column(name="_date")
     private String date;
     
-    @Column(name="_progress")
-    private String progress;
+    @Enumerated(EnumType.STRING)
+    private Progress progress;
     
-    @Column(name="_category")
-    private String category;
+    @Enumerated(EnumType.STRING)
+    private Stage stage;
     
-    @Column(name="_message")
+    @Enumerated(EnumType.STRING)
+    private TaskType task_type;
+    
+
     private String message;
 	
 	@ManyToOne
-	@JoinColumn(name = "_uid")
 	private User user;
 
-    @Column(name="_priority")
     private String priority;
+
+	private TaskType type;
     
-    
-	/**
-	 * @return the user
-	 */
-	public User getUser() {
-		return user;
-	}
 
 	/**
-	 * @param user the user to set
+	 * 
 	 */
-	public void setUser(User user) {
-		this.user = user;
+	public Task() {
+	
 	}
+
+
+	/**
+	 * @param id
+	 * @param name
+	 * @param date
+	 * @param progress
+	 * @param stage
+	 * @param type
+	 * @param message
+	 * @param user
+	 * @param priority
+	 */
+	public Task(long id, String name, String date, Progress progress, Stage stage, TaskType type, String message,
+			User user, String priority) {
+		super();
+		this.id = id;
+		this.name = name;
+		this.date = date;
+		this.progress = progress;
+		this.stage = stage;
+		this.type = type;
+		this.message = message;
+		this.user = user;
+		this.priority = priority;
+	}
+
 
 	/**
 	 * @return the id
@@ -75,12 +97,14 @@ public class Task {
 		return id;
 	}
 
+
 	/**
 	 * @param id the id to set
 	 */
 	public void setId(long id) {
 		this.id = id;
 	}
+
 
 	/**
 	 * @return the name
@@ -89,6 +113,7 @@ public class Task {
 		return name;
 	}
 
+
 	/**
 	 * @param name the name to set
 	 */
@@ -96,19 +121,6 @@ public class Task {
 		this.name = name;
 	}
 
-	/**
-	 * @return the quality
-	 */
-	public int getQuality() {
-		return quality;
-	}
-
-	/**
-	 * @param quality the quality to set
-	 */
-	public void setQuality(int quality) {
-		this.quality = quality;
-	}
 
 	/**
 	 * @return the date
@@ -117,6 +129,7 @@ public class Task {
 		return date;
 	}
 
+
 	/**
 	 * @param date the date to set
 	 */
@@ -124,19 +137,54 @@ public class Task {
 		this.date = date;
 	}
 
+
 	/**
 	 * @return the progress
 	 */
-	public String getProgress() {
+	public Progress getProgress() {
 		return progress;
 	}
+
 
 	/**
 	 * @param progress the progress to set
 	 */
-	public void setProgress(String progress) {
+	public void setProgress(Progress progress) {
 		this.progress = progress;
 	}
+
+
+	/**
+	 * @return the stage
+	 */
+	public Stage getStage() {
+		return stage;
+	}
+
+
+	/**
+	 * @param stage the stage to set
+	 */
+	public void setStage(Stage stage) {
+		this.stage = stage;
+	}
+
+
+	/**
+	 * @return the type
+	 */
+	public TaskType getType() {
+		return type;
+	}
+
+
+	/**
+	 * @param type the type to set
+	 */
+	public void setType(TaskType type) {
+		this.type = type;
+	}
+
 
 	/**
 	 * @return the message
@@ -145,6 +193,7 @@ public class Task {
 		return message;
 	}
 
+
 	/**
 	 * @param message the message to set
 	 */
@@ -152,47 +201,22 @@ public class Task {
 		this.message = message;
 	}
 
-	/**
-	 * @return the ptaskid
-	 */
-	public long getPtaskid() {
-		return ptaskid;
-	}
 
 	/**
-	 * @param ptaskid the ptaskid to set
+	 * @return the user
 	 */
-	public void setPtaskid(long ptaskid) {
-		this.ptaskid = ptaskid;
+	public User getUser() {
+		return user;
 	}
 
-	/**
-	 * @return the produceid
-	 */
-	public long getProduceid() {
-		return produceid;
-	}
 
 	/**
-	 * @param produceid the produceid to set
+	 * @param user the user to set
 	 */
-	public void setProduceid(long produceid) {
-		this.produceid = produceid;
+	public void setUser(User user) {
+		this.user = user;
 	}
 
-	/**
-	 * @return the stockid
-	 */
-	public long getStockid() {
-		return stockid;
-	}
-
-	/**
-	 * @param stockid the stockid to set
-	 */
-	public void setStockid(long stockid) {
-		this.stockid = stockid;
-	}
 
 	/**
 	 * @return the priority
@@ -201,49 +225,13 @@ public class Task {
 		return priority;
 	}
 
+
 	/**
 	 * @param priority the priority to set
 	 */
 	public void setPriority(String priority) {
 		this.priority = priority;
 	}
-
-	/**
-	 * @param id
-	 * @param name
-	 * @param quality
-	 * @param date
-	 * @param progress
-	 * @param message
-	 * @param ptaskid
-	 * @param produceid
-	 * @param stockid
-	 * @param priority
-	 */
-	public Task(long id, String name, int quality, String date, String progress, String message, long ptaskid,
-			long produceid, long stockid, String priority) {
-		super();
-		this.id = id;
-		this.name = name;
-		this.quality = quality;
-		this.date = date;
-		this.progress = progress;
-		this.message = message;
-		this.ptaskid = ptaskid;
-		this.produceid = produceid;
-		this.stockid = stockid;
-		this.priority = priority;
-	}
-
-	/**
-	 * 
-	 */
-	public Task() {
-	
-	}
-    
-	
-  
 	
 	
 }

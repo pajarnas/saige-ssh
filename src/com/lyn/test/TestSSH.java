@@ -12,7 +12,7 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import com.lyn.model.User;
-
+import com.lyn.model.*;
 
 public class TestSSH{
 
@@ -31,6 +31,9 @@ public class TestSSH{
 		SessionFactory sessionFactory = ctx.getBean(SessionFactory.class);
 		System.out.println("sessionFactory:____"+sessionFactory+"_______sessionFactory");
 		Session session = sessionFactory.openSession();
+		Task t = new Task();
+		t.setProgress(Progress.中期完成);
+	    sessionFactory.getCurrentSession().save(t);
 		session.close();
 	}
 	

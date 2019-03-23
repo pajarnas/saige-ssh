@@ -8,7 +8,7 @@ package com.lyn.model;
  * @date      2019-03-23
  *
  */
-public enum Progresses {
+public enum Progress {
 	未开始,
 	前期完成,
 	中期完成,
