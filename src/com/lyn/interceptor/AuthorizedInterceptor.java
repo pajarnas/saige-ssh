@@ -57,9 +57,10 @@ public class AuthorizedInterceptor implements HandlerInterceptor {
     private UserService userService;
  
     /**
-     * preHandle方法是进行处�?�器拦截用的，顾�??�?义，该方法在Controller处�?�之�?进行调用，SpringMVC中的Interceptor拦截器是链�?的，�?�以�?�时存在，
-     多个Interceptor，然�?�SpringMVC会根�?�声明的顺�?一个接一个的执行，而且所有的Interceptor中的preHandler方法都会在Controller方法之�?调用
-     如果返回的是false的�?就能够中断这个请求
+     * preHandle方法是进行处理器拦截用的，该方法在Controller处之前进行调用，SpringMVC中的Interceptor拦截器是链式的，
+     多个Interceptor，然后SpringMVC会根据声明的顺序一个接一个的执行，而且所有的Interceptor中的preHandler方法都会在Controller方法之�?调用
+     如果返回的是false的，就能中断这个请求
+     下面的代码是hard Code 实现用户保持登陆的功能
      * @param request
      * @param response
      * @param o
@@ -76,11 +77,12 @@ public class AuthorizedInterceptor implements HandlerInterceptor {
          if (StringUtils.pathEquals("/",requestUri)) {  
              return true;  
          }  
+         System.out.println("_______"+requestUri);
          //放行exceptUrls中配置的url  
          for (String url:exceptUrls  
               ) {  
         	 System.out.println(url);
-        	 System.out.println(requestUri);
+        	 System.out.println("_______"+requestUri);
              if(url.endsWith("/**")){  
                  if (requestUri.startsWith(url.substring(0, url.length() - 3))) {  
                      return true;  
@@ -99,14 +101,14 @@ public class AuthorizedInterceptor implements HandlerInterceptor {
         if (session == null) {
         	
         	System.out.println("No Session!");
-        	response.sendRedirect("http://localhost:8080/lyn-ssh/jsp/common/sign_in.jsp");
+        	response.sendRedirect("http://localhost:8080/lyn-ssh/jsp/user/sign_in.jsp");
         	return false;
         }
         String sessionId = session.getId();
         for(Cookie cookie:cookies){
             if (cookie.getName().equals("JSESSIONID")) {
                 if(!cookie.getValue().equals(sessionId)){
-                	response.sendRedirect("http://localhost:8080/lyn-ssh/jsp/common/sign_in.jsp");
+                	response.sendRedirect("http://localhost:8080/lyn-ssh/jsp/user/sign_in.jsp");
                 	return false;
                 }
             }
@@ -115,24 +117,25 @@ public class AuthorizedInterceptor implements HandlerInterceptor {
             if(cookie2.getName().equals("userid")&&cookie2.getValue()!=null){
                 int cookieUserid = Integer.parseInt(cookie2.getValue());
                 try{
-                    int sessionUserid = Integer.parseInt((String) session.getAttribute("userid"));
+                    int sessionUserid = Integer.parseInt(String.valueOf( session.getAttribute("userid")));
                     System.out.println(sessionUserid);
                     if (sessionUserid==cookieUserid){
                     	System.out.println("matched");
+                    	session.setAttribute("userid", sessionUserid);
                           return true;
                     }else{
-                    	response.sendRedirect("http://localhost:8080/lyn-ssh/jsp/common/sign_in.jsp");
+                    	response.sendRedirect("http://localhost:8080/lyn-ssh/jsp/user/sign_in.jsp");
                     	return false;
                     }
                 }catch (NullPointerException e){
-                	response.sendRedirect("http://localhost:8080/lyn-ssh/jsp/common/sign_in.jsp");
+                	response.sendRedirect("http://localhost:8080/lyn-ssh/jsp/user/sign_in.jsp");
                 	return false;
                 }
  
             }
         }
         System.out.println("Password Is incorrect");
-        response.sendRedirect("http://localhost:8080/lyn-ssh/jsp/common/sign_in.jsp");
+        response.sendRedirect("http://localhost:8080/lyn-ssh/jsp/user/sign_in.jsp");
         return false;
  
     }
@@ -158,7 +161,7 @@ public class AuthorizedInterceptor implements HandlerInterceptor {
     	HttpSession session = request.getSession(false);
     	if(session.getAttribute("userid")==null)
     		return;
-    	int sessionUserid = Integer.parseInt((String) session.getAttribute("userid"));
+    	int sessionUserid = Integer.parseInt(String.valueOf(session.getAttribute("userid")));
     	User user = this.userService.findUser(sessionUserid);
     	session.setAttribute("username", user.getName());
     }

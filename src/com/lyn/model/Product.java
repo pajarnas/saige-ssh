@@ -2,11 +2,19 @@ package com.lyn.model;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.persistence.Transient;
+
+import com.lyn.model.enums.ProductType;
+
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 /**
  * @author    Yaning Liu
@@ -18,61 +26,36 @@ import javax.persistence.Transient;
  */
 @Entity
 @Table(name="_Product")
+@Setter
+@Getter
+@NoArgsConstructor
 public class Product {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	@Column(name="_id",nullable=false,unique=true)
 	private long id;
 	
-	@Column(name="_name")
+	
 	private String name;
 	
-	@Column(name="_quality")
+
 	private int quality;
-    
-	
-	
-	
-	public Product() {
-		
-	}
-	
+	@Enumerated(EnumType.STRING)
+	private ProductType product_type;
+
 	/**
 	 * @param id
 	 * @param name
 	 * @param quality
+	 * @param product_type
 	 */
-	public Product(long id, String name, int quality) {
+	public Product(long id, String name, int quality, ProductType product_type) {
 		super();
 		this.id = id;
 		this.name = name;
 		this.quality = quality;
-	}
-
-	public long getId() {
-		return id;
-	}
-
-	public void setId(long id) {
-		this.id = id;
-	}
-
-	public String getName() {
-		return name;
-	}
-
-	public void setName(String name) {
-		this.name = name;
-	}
-
-	public int getQuality() {
-		return quality;
-	}
-
-	public void setQuality(int quality) {
-		this.quality = quality;
+		this.product_type = product_type;
 	}
 	
-	
+
 	
 }

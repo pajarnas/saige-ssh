@@ -1,10 +1,10 @@
-<%@ page language="java" contentType="text/html; charset=GB18030"
-    pageEncoding="GB18030"%>
+<%@ page language="java" contentType="text/html; charset=utf-8"
+    pageEncoding="utf-8"%>
 <!DOCTYPE html>
 <html>
 <head>
  <%@ include file="parts/resources.jsp" %>  
-<title>Insert title here</title>
+<title>主管后台界面</title>
 </head>
 <body>
 
@@ -16,14 +16,20 @@
 	    <!--header end-->
 	
 	    <!--sidebar start-->
-	     <%@ include file="parts/aside.jsp" %>  
+	    <%@ include file="parts/aside.jsp" %>  
 	    <!--sidebar end-->
-    	
-    	<!--main content start-->
-    <section id="main-content">
-      
-   
-    <!--main content end-->
+	    
+	    <!-- main content section start -->
+	    <section id="main-content">
+	    	<section class="wrapper">
+
+
+
+
+
+			</section>
+		</section>
+	     <!--  main content section end -->
     
   </section>
   <!-- container section end -->

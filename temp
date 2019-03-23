@@ -1,0 +1,32 @@
+ form element - progress
+ 
+ 				   <div class="form-group ">
+	                      <label for="cname" class="control-label col-lg-2">任务进度</label>
+	                      <div class="col-lg-10">
+	       
+	                        <select name="progress" form="add_task_form" class="form-control m-bot15">
+	      															<option selected="selected"> 未开始</option>
+	                                                                    <option>前期完成</option>
+	                                                                    <option>中期完成</option>
+	                                                                    <option>即将完成</option>
+	                                                                    <option>完成</option>
+																		
+																	</select>
+									<span class="help-block">指任务具体的进度，指明任务负责人对当前任务的完成度</span>		
+															
+	                      </div>
+	                    </div>
+                 
+ form element - datetime picker	                    
+	                <div class="form-group">
+            
+			            <label for="exampleInputPassword1" class="col-lg-2 control-label">生日日期</label>   
+			            <div class="col-lg-10">
+			                <div class="input-group date" id="datetimepicker1">
+			                    <input value='${user.date}' type="text" class="form-control" name="date">
+			                    <span class="input-group-addon">
+			                        <span class="glyphicon glyphicon-calendar"></span>
+			                    </span>
+			                </div>
+			             </div>
+        			</div>

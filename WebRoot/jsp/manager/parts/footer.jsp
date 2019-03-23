@@ -1,7 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=GB18030"
-    pageEncoding="GB18030"%>
-    <%@ taglib uri='http://java.sun.com/jsp/jstl/core' prefix='c'%>
-<!DOCTYPE html>
+<%@ page language="java" contentType="text/html; charset=utf-8"
+    pageEncoding="utf-8"%>
 <!-- javascripts -->
   <script src="/lyn-ssh/js/jquery.js"></script>
   <script src="/lyn-ssh/js/jquery-ui-1.10.4.min.js"></script>
@@ -18,18 +16,17 @@
   <script src="/lyn-ssh/assets/jquery-easy-pie-chart/jquery.easy-pie-chart.js"></script>
   <script src="/lyn-ssh/js/owl.carousel.js"></script>
   <!-- jQuery full calendar -->
-  <<script src="/js/fullcalendar.min.js"></script>
+  <script src="/lyn-ssh/js/fullcalendar.min.js"></script>
     <!-- Full Google Calendar - Calendar -->
-    <script src="/assets/fullcalendar/fullcalendar/fullcalendar.js"></script>
+    <script src="/lyn-ssh/assets/fullcalendar/fullcalendar/fullcalendar.js"></script>
     <!--script for this page only-->
-    <script src="/js/calendar-custom.js"></script>
+    <script src="/lyn-ssh/js/calendar-custom.js"></script>
     <script src="/lyn-ssh/js/jquery.rateit.min.js"></script>
     <!-- custom select -->
     <script src="/lyn-ssh/js/jquery.customSelect.min.js"></script>
     <script src="/lyn-ssh/assets/chart-master/Chart.js"></script>
 
-    <!--custome script for all page-->
-    <script src="/lyn-ssh/js/scripts.js"></script>
+    
     <!-- custom script for this page-->
     <script src="/lyn-ssh/js/sparkline-chart.js"></script>
     <script src="/lyn-ssh/js/easy-pie-chart.js"></script>
@@ -43,7 +40,52 @@
     <script src="/lyn-ssh/js/sparklines.js"></script>
     <script src="/lyn-ssh/js/charts.js"></script>
     <script src="/lyn-ssh/js/jquery.slimscroll.min.js"></script>
+      <!-- container section end -->
+
+
+
+  <!-- jquery ui -->
+  <script src="/lyn-ssh/js/jquery-ui-1.9.2.custom.min.js"></script>
+
+  <!--custom checkbox & radio-->
+  <script type="/lyn-ssh/text/javascript" src="js/ga.js"></script>
+  <!--custom switch-->
+  <script src="/lyn-ssh/js/bootstrap-switch.js"></script>
+  <!--custom tagsinput-->
+  <script src="/lyn-ssh/js/jquery.tagsinput.js"></script>
+
+  <!-- colorpicker -->
+<script src="/lyn-ssh/js/bootstrap-colorpicker.js"></script>
+
+  <!-- bootstrap-wysiwyg -->
+  <script src="/lyn-ssh/js/jquery.hotkeys.js"></script>
+  <script src="/lyn-ssh/js/bootstrap-wysiwyg.js"></script>
+  <script src="/lyn-ssh/js/bootstrap-wysiwyg-custom.js"></script>
+  <script src="/lyn-ssh/js/moment.js"></script>
+  <!-- date picker -->
+  <script src="/lyn-ssh/js/daterangepicker.js"></script>
+  <script src="/lyn-ssh/js/bootstrap-datepicker.js"></script>
+  <script type="text/javascript" src="/lyn-ssh/js/bootstrap-datetimepicker.min.js"></script>
+   <script src="/lyn-ssh/js/locale/zh-cn.js" charset="UTF-8"></script>
+   
+  <!-- ck editor -->
+  <script type="text/javascript" src="/lyn-ssh/assets/ckeditor/ckeditor.js"></script>
+  <!-- custom form component script for this page-->
+  <script src="/lyn-ssh/js/form-component.js"></script>
+  
+  <!-- custome script for all page -->
+  <script src="/lyn-ssh/js/scripts.js"></script>
+ 
+    
     <script>
+   
+    moment.locale('zh-cn');
+        $(function () {
+        	 $('#datetimepicker1').datetimepicker({
+                 locale: 'zh-cn'
+             });
+        });
+   
       //knob
       $(function() {
         $(".knob").knob({
@@ -87,4 +129,45 @@
           }
         });
       });
+      ko.bindingHandlers.dateTimePicker = {
+    		    init: function (element, valueAccessor, allBindingsAccessor) {
+    		        //initialize datepicker with some optional options
+    		        var options = allBindingsAccessor().dateTimePickerOptions || {};
+    		        $(element).datetimepicker(options);
+
+    		        //when a user changes the date, update the view model
+    		        ko.utils.registerEventHandler(element, "dp.change", function (event) {
+    		            var value = valueAccessor();
+    		            if (ko.isObservable(value)) {
+    		                if (event.date != null && !(event.date instanceof Date)) {
+    		                    value(event.date.toDate());
+    		                } else {
+    		                    value(event.date);
+    		                }
+    		            }
+    		        });
+
+    		        ko.utils.domNodeDisposal.addDisposeCallback(element, function () {
+    		            var picker = $(element).data("DateTimePicker");
+    		            if (picker) {
+    		                picker.destroy();
+    		            }
+    		        });
+    		    },
+    		    update: function (element, valueAccessor, allBindings, viewModel, bindingContext) {
+
+    		        var picker = $(element).data("DateTimePicker");
+    		        //when the view model is updated, update the widget
+    		        if (picker) {
+    		            var koDate = ko.utils.unwrapObservable(valueAccessor());
+
+    		            //in case return from server datetime i am get in this form for example /Date(93989393)/ then fomat this
+    		            koDate = (typeof (koDate) !== 'object') ? new Date(parseFloat(koDate.replace(/[^0-9]/g, ''))) : koDate;
+
+    		            picker.date(koDate);
+    		        }
+    		    }
+    		};
+      
     </script>
+    

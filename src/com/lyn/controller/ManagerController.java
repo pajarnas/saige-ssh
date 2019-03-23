@@ -19,9 +19,12 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.ui.ModelMap;
 
+import com.lyn.model.PTask;
+import com.lyn.model.Product;
 import com.lyn.model.Task;
 import com.lyn.model.User;
 import com.lyn.service.UserService;
+import com.lyn.service.ProductService;
 import com.lyn.service.TaskService;
 /**
  * @author    Yaning Liu
@@ -41,6 +44,9 @@ public class ManagerController {
 	
 	@Resource(name="taskService")
 	private TaskService taskService;
+	
+	@Resource(name="productService")
+	private ProductService productService;
     
 	@ResponseBody
 	@RequestMapping(method = RequestMethod.GET,value="index.do")
@@ -50,8 +56,40 @@ public class ManagerController {
 	}
 	
 	@ResponseBody
-	@RequestMapping(method = RequestMethod.GET,value="insert")
-	ModelAndView insertHandler() {
+	@RequestMapping(method = RequestMethod.GET,value="profile.do")
+	ModelAndView profileHandler(HttpServletRequest request, HttpServletResponse response) {
+		ModelAndView model = new ModelAndView("forward:profile.jsp");
+		HttpSession session = request.getSession();
+		User u = userService.findUser(Long.parseLong(String.valueOf(session.getAttribute("userid"))));
+		model.addObject(u);
+		return model;
+	}
+	
+	@ResponseBody
+	@RequestMapping(method = RequestMethod.POST, value = "updateUser")  
+    public ModelAndView updateUser(User user){
+		ModelAndView model = new ModelAndView("redirect:index.do");
+		this.userService.upadteUser(user);
+        return model;
+    }
+	
+	
+	@ResponseBody
+	@RequestMapping(method = { RequestMethod.GET, RequestMethod.POST },value="insert")
+	ModelAndView insertHandler(HttpServletRequest request, HttpServletResponse response,Task task) {
+		
+		if(task.getName()==null) {
+			ModelAndView model = new ModelAndView("forward:insert_task.jsp");
+			List<Product> products = this.productService.getProductList();
+			model.addObject("products", products);
+		    
+			
+			return model;
+		}
+		long sessionUserid = Long.parseLong(String.valueOf(request.getSession().getAttribute("userid")));
+		User user = this.userService.findUser(sessionUserid);
+		
+	    this.taskService.addTask(task);
 		ModelAndView model = new ModelAndView("forward:insert_task.jsp");
 		return model;
 	}
@@ -114,11 +152,11 @@ public class ManagerController {
     public ModelAndView updateTask2(int id, int status){
 		Task t = this.taskService.findTask(id);
 		switch(status) {
-		case 0:t.setProgress("Not Started");break;
-		case 2:t.setProgress("In Progress 50%");break;
-		case 3:t.setProgress("In Progress 80%");break;
-		case 4:t.setProgress("Completed");break;
-		case 1:t.setProgress("In Progress 20%");break;
+//		case 0:t.setProgress("Not Started");break;
+//		case 2:t.setProgress("In Progress 50%");break;
+//		case 3:t.setProgress("In Progress 80%");break;
+//		case 4:t.setProgress("Completed");break;
+//		case 1:t.setProgress("In Progress 20%");break;
 		}
 		ModelAndView model = new ModelAndView("redirect:taskList.do");
 		this.taskService.upadteTask(t);

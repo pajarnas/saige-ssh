@@ -1,10 +1,11 @@
-<%@ page language="java" contentType="text/html; charset=GB18030"
-    pageEncoding="GB18030"%>
+<%@ page language="java" contentType="text/html; charset=utf-8"
+    pageEncoding="utf-8"%>
+    <%@ taglib prefix = "c" uri = "http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
  <%@ include file="parts/resources.jsp" %>  
-<title>Insert title here</title>
+<title>主管后台界面 | 生产任务表单</title>
 </head>
 <body>
 
@@ -28,80 +29,80 @@
           <div class="col-lg-12">
             <section class="panel">
               <header class="panel-heading">
-                Task Form
+                生产任务表单
               </header>
            
               <div class="panel-body">
                 <div class="form">
-                  <form class="form-validate form-horizontal" id="add_task_form" method="post" action="/lyn-ssh/task/addTask.do">
+                  <form class="form-validate form-horizontal" id="add_task_form" method="post" action="/lyn-ssh/jsp/manager/insert.do">
                     <div class="form-group ">
-                      <label for="cname" class="control-label col-lg-2">Task Name <span class="required">*</span></label>
+                      <label for="cname" class="control-label col-lg-2">生产任务名 <span class="required">*</span></label>
                       <div class="col-lg-10">
                         <input class="form-control" id="cname" name="name" minlength="5" type="text" required />
                       </div>
                     </div>
-                     <div class="form-group ">
-	                      <label for="cname" class="control-label col-lg-2">Task Progress <span class="required">*</span></label>
-	                      <div class="col-lg-10">
-	       
-	                        <select name="progress" form="add_task_form" class="form-control m-bot15">
-																		<option selected="selected">Not Started</option>
-	                                                                    <option>In Progress 20%</option>
-	                                                                    <option>In Progress 50%</option>
-	                                                                    <option>In Progress 80%</option>
-	                                                                    <option>Completed</option>
-																		
-																	</select>
-	                      </div>
-	                    </div>
-                    <div class="form-group">
-															<label class="control-label col-lg-2">Datepicker</label>
-															<div class="col-lg-10">
-																<input name="date" id="dp1" type="text" value="28-10-2013" size="16" class="form-control">
-															</div>
-														</div>
-														
-           
                     
-                      
-                      
-                        <input type="hidden" name="produceid" value=0 />
-                         <input type="hidden" name="ptaskid" value=0  />
-                         <input type="hidden" name="stockid" value=0  />
-                         
-                          <div class="form-group ">
-	                      <label for="cname" class="control-label col-lg-2">Task Priority  <span class="required">*</span></label>
+                      <div class="form-group">
+			            <label for="exampleInputPassword1" class="col-lg-2 control-label">任务日期</label>   
+			            <div class="col-lg-10">
+			                <div class="input-group date" id="datetimepicker1">
+			                    <input value='${user.date}' type="text" class="form-control" name="date">
+			                    <span class="input-group-addon">
+			                        <span class="glyphicon glyphicon-calendar"></span>
+			                    </span>
+			                </div>
+			             </div>
+        			</div>
+           
+                         <div class="form-group ">
+	                      <label for="cname" class="control-label col-lg-2">任务优先级</label>
 	                      <div class="col-lg-10">
 	       
-	                        <select name="priority" form="add_task_form" class="form-control m-bot15">
+	                         <select name="priority" form="add_task_form" class="form-control m-bot15">
 																		<option selected="selected">medium</option>
 	                                                                    <option>low</option>
 	                                                                    <option>high</option>
 	                                                                    <option>urgent</option>
-	                                                                   
-																		
-																	</select>
+	                         </select>
 	                      </div>
 	                    </div>
+                      
+            
                     
                     
                        <div class="form-group ">
-                      <label for="cname" class="control-label col-lg-2">Quality <span class="required">*</span></label>
+                      <label for="cname" class="control-label col-lg-2">生产数量 <span class="required">*</span></label>
                       <div class="col-lg-10">
                         <input class="form-control " id="cname" type="number" name="quality" required />
                       </div>
                     </div>
+                    
+                      
+	                  
+                  
+	    
+	                    
+	                       <div class="form-group ">
+	                      <label for="cname" class="control-label col-lg-2">生产产品</label>
+	                      <div class="col-lg-10">
+	       
+	                        <select name="product" form="add_task_form" class="form-control m-bot15">
+	      										<c:forEach items="${products}" var="product">
+														 <option value="${product}" />${product.name}</option>
+												</c:forEach>
+							</select>
+							
+	                      </div>
+	                    </div>
+	                    	
+	                    
+	          
                  
-                    <div class="form-group ">
-                      <label for="ccomment" class="control-label col-lg-2">Feedback</label>
-                      <div class="col-lg-10">
-                        <textarea class="form-control " id="ccomment" name="message" required></textarea>
-                      </div>
-                    </div>
+                   
                     <div class="form-group">
                       <div class="col-lg-offset-2 col-lg-10">
-                        <button class="btn btn-primary" type="submit">Submit</button>
-                        <button class="btn btn-default" type="button">Cancel</button>
+                        <button class="btn btn-primary" type="submit">提交</button>
+                  
                       </div>
                     </div>
                   </form>
