@@ -26,5 +26,5 @@ public interface TaskDao {
 	
 	public void delTask(Task user);
 	
-	public List<Task> getTaskList();
+//	public List<Task> getTaskList();
 }

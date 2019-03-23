@@ -56,14 +56,14 @@ public class TaskDaoImpl implements TaskDao{
 	
 
 
-	/* (non-Javadoc)
-	 * @see com.lyn.dao.TaskDao#getTaskList()
-	 */
-	@SuppressWarnings("unchecked")
-	@Override
-	public List<Task> getTaskList() {
-		Session s = this.sessionFactory.getCurrentSession();
-		return (List<Task>) s.createSQLQuery("select * FROM _task;").addEntity(Task.class).list();
-		
-	}
+//	/* (non-Javadoc)
+//	 * @see com.lyn.dao.TaskDao#getTaskList()
+//	 */
+//	@SuppressWarnings("unchecked")
+//	@Override
+//	public List<Task> getTaskList() {
+//		Session s = this.sessionFactory.getCurrentSession();
+//		return (List<Task>) s.createSQLQuery("select * FROM _task;").addEntity(Task.class).list();
+//		
+//	}
 }

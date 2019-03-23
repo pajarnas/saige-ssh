@@ -26,7 +26,4 @@ public interface PTaskDao {
 	
 	public void delPTask(PTask ptask);
 	
-	public List<PTask> getPTaskList();
-	
-	public List<PTask> getSubPTaskList(int i);
 }

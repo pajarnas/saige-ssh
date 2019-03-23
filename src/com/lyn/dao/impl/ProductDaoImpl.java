@@ -50,7 +50,7 @@ public class ProductDaoImpl implements ProductDao{
 	/* (non-Javadoc)
 	 * @see com.lyn.dao.ProductDao#update(com.lyn.model.Product)
 	 */
-	@Override
+	
 	public void update(Product product) {
 		Session session = sessionFactory.openSession();
 	    Transaction tx = session.beginTransaction();

@@ -55,26 +55,4 @@ public class PTaskDaoImpl implements PTaskDao{
 	}
 	
 
-
-	/* (non-Javadoc)
-	 * @see com.lyn.dao.PTaskDao#getPTaskList()
-	 */
-	@SuppressWarnings("unchecked")
-	@Override
-	public List<PTask> getPTaskList() {
-		Session s = this.sessionFactory.getCurrentSession();
-		return (List<PTask>) s.createSQLQuery("select * FROM _ptask;").addEntity(PTask.class).list();
-		
-	}
-
-	/* (non-Javadoc)
-	 * @see com.lyn.dao.PTaskDao#getSubPTaskList()
-	 */
-	@Override
-	public List<PTask> getSubPTaskList(int i) {
-		Session s = this.sessionFactory.getCurrentSession();
-		
-		return (List<PTask>) s.createSQLQuery("select * FROM _ptask where _listid = "+String.valueOf(i)+";").addEntity(PTask.class).list();
-		
-	}
 }

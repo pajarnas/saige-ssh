@@ -109,19 +109,19 @@ public class ManagerController {
         return model;
     }
 	
-	@ResponseBody
-	@RequestMapping(method = RequestMethod.GET, value = "updateTaskStatus")  
-    public ModelAndView updateTask2(int id, int status){
-		Task t = this.taskService.findTask(id);
-		switch(status) {
-		case 0:t.setProgress("Not Started");break;
-		case 2:t.setProgress("In Progress 50%");break;
-		case 3:t.setProgress("In Progress 80%");break;
-		case 4:t.setProgress("Completed");break;
-		case 1:t.setProgress("In Progress 20%");break;
-		}
-		ModelAndView model = new ModelAndView("redirect:taskList.do");
-		this.taskService.upadteTask(t);
-        return model;
-    }
+//	@ResponseBody
+//	@RequestMapping(method = RequestMethod.GET, value = "updateTaskStatus")  
+//    public ModelAndView updateTask2(int id, int status){
+//		Task t = this.taskService.findTask(id);
+//		switch(status) {
+//		case 0:t.setProgress("Not Started");break;
+//		case 2:t.setProgress("In Progress 50%");break;
+//		case 3:t.setProgress("In Progress 80%");break;
+//		case 4:t.setProgress("Completed");break;
+//		case 1:t.setProgress("In Progress 20%");break;
+//		}
+//		ModelAndView model = new ModelAndView("redirect:taskList.do");
+//		this.taskService.upadteTask(t);
+//        return model;
+//    }
 }

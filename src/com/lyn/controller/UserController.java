@@ -56,17 +56,17 @@ public class UserController {
 		foo.setMaxAge(2000); //set expire time to 1000 sec
 				
 		response.addCookie(foo); //put cookie in response 
-		switch(user.getRole()) {
-		
-		case "Manager":
-			
+//		switch(user.getRole()) {
+//		
+//		case "Manager":
+//			
 			model = new ModelAndView("forward:/task/mindex.do");
-			break;
+//			break;
 		
 		
-		}
+//		}
 	    
-		model.addObject("user",user);
+//		model.addObject("user",user);
 		return model;
 	}
 	
@@ -107,28 +107,28 @@ public class UserController {
            }
        }
 	    
-	    System.out.print(user.getRole());
-		switch(user.getRole()) {
-				
-				case "Manager":
-					
-					model = new ModelAndView("redirect:/jsp/manager/index.do");
-					
-					break;
-				case "Stock Manager":
-					
-					model = new ModelAndView("forward:/task/mindex.do");
-				case "Produce Manager":
-					
-					model = new ModelAndView("redirect:/jsp/produce/index.do");
-					
-					break;
-				
-				
-				}
-	    
-		model.addObject(user);
-		
+//	    System.out.print(user.getRole());
+//		switch(user.getRole()) {
+//				
+//				case "Manager":
+//					
+//					model = new ModelAndView("redirect:/jsp/manager/index.do");
+//					
+//					break;
+//				case "Stock Manager":
+//					
+//					model = new ModelAndView("forward:/task/mindex.do");
+//				case "Produce Manager":
+//					
+//					model = new ModelAndView("redirect:/jsp/produce/index.do");
+//					
+//					break;
+//				
+//				
+//				}
+//	    
+//		model.addObject(user);
+//		
 		return model;
 		
     }
