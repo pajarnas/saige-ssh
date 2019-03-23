@@ -32,8 +32,8 @@
             <bean class="com.lyn.interceptor.AuthorizedInterceptor">
             <property name="exceptUrls">  
                     <list>  
-                        <value>/user/login.do</value>  
-         				<value>/user/signUp.do</value>
+                        <value>/jsp/user/login.do</value>  
+         				<value>/jsp/user/signUp.do</value>
                     </list>  
                 </property>  
                </bean>   

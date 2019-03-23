@@ -16,10 +16,7 @@ public class ProgressBar {
 
 	private int task_id;
 	
-	
-	
-	
-	
+
 	/**
 	 * 
 	 */

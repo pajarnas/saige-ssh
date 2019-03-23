@@ -24,7 +24,7 @@ import com.lyn.service.UserService;
 
 
 @Controller
-@RequestMapping("/user")
+@RequestMapping("/jsp/user")
 public class UserController {
 	
 	//¶ÔUserService½Ó¿Ú£¬µ±Ö»ÓÐÒ»¸öÊµÏÖÀà¼Ì³Ð½Ó¿ÚÊ±£¬¿ÉÒÔÊ¹ÓÃ@Autowired£¬½Ó¿ÚÊµÏÖÀà@Service×¢½â¼´¿É¡£
@@ -37,38 +37,38 @@ public class UserController {
 
 	
 	// http://localhost:8080/lyn-ssh/user/addUser.do
-	@ResponseBody
-	@RequestMapping(method = RequestMethod.POST, value = "validUser")
-	public ModelAndView validUser(HttpServletResponse response, String id,String password){
-		
-		
-		ModelAndView model =null;
-		User user = this.userService.findUser(Integer.parseInt(id));
-		System.out.println(user.getPassword()+user.getName());
-		System.out.println(password);
-		if( !user.getPassword().equals(password)) 
-			{
-			     model = new ModelAndView("forward:/jsp/common/sign_in_error.jsp");
-			     return model;
-			}
-		
-		Cookie foo = new Cookie("id", String.valueOf(user.getId())); //bake cookie
-		foo.setMaxAge(2000); //set expire time to 1000 sec
-				
-		response.addCookie(foo); //put cookie in response 
-		switch(user.getRole()) {
-		
-		case "Manager":
-			
-			model = new ModelAndView("forward:/task/mindex.do");
-			break;
-		
-		
-		}
-	    
-		model.addObject("user",user);
-		return model;
-	}
+//	@ResponseBody
+//	@RequestMapping(method = RequestMethod.POST, value = "validUser")
+//	public ModelAndView validUser(HttpServletResponse response, String id,String password){
+//		
+//		
+//		ModelAndView model =null;
+//		User user = this.userService.findUser(Integer.parseInt(id));
+//		System.out.println(user.getPassword()+user.getName());
+//		System.out.println(password);
+//		if( !user.getPassword().equals(password)) 
+//			{
+//			     model = new ModelAndView("forward:/jsp/common/sign_in_error.jsp");
+//			     return model;
+//			}
+//		
+//		Cookie foo = new Cookie("id", String.valueOf(user.getId())); //bake cookie
+//		foo.setMaxAge(2000); //set expire time to 1000 sec
+//				
+//		response.addCookie(foo); //put cookie in response 
+//		switch(user.getRole()) {
+//		
+//		case "Manager":
+//			
+//			model = new ModelAndView("forward:/task/mindex.do");
+//			break;
+//		
+//		
+//		}
+//	    
+//		model.addObject("user",user);
+//		return model;
+//	}
 	
 
 	@ResponseBody
@@ -78,14 +78,14 @@ public class UserController {
 		User user = this.userService.findUser(Integer.parseInt(id));
 		if(user==null) 
 		{
-		     model = new ModelAndView("forward:/jsp/common/sign_in_error.jsp");
+		     model = new ModelAndView("forward:/jsp/user/sign_in_error.jsp");
 		     return model;
 		}
 		System.out.println(user.getPassword()+user.getName());
 		System.out.println(password);
 		if(!user.getPassword().equals(password)) 
 			{
-			     model = new ModelAndView("forward:/jsp/common/sign_in_error.jsp");
+			     model = new ModelAndView("forward:/jsp/user/sign_in_error.jsp");
 			     return model;
 			}
 		HttpSession session = request.getSession();
@@ -107,28 +107,22 @@ public class UserController {
            }
        }
 	    
-	    System.out.print(user.getRole());
-		switch(user.getRole()) {
-				
-				case "Manager":
-					
-					model = new ModelAndView("redirect:/jsp/manager/index.do");
-					
-					break;
-				case "Stock Manager":
-					
-					model = new ModelAndView("forward:/task/mindex.do");
-				case "Produce Manager":
-					
-					model = new ModelAndView("redirect:/jsp/produce/index.do");
-					
-					break;
-				
-				
-				}
-	    
+ 
+       switch(user.getRole()) {
+       case 主管经理:
+    	   model = new ModelAndView("redirect:/jsp/manager/index.do");break;
+       case 采购用料经理:
+    	   model = new ModelAndView("redirect:/jsp/produce/index.do");break;
+       case 仓库经理:
+    	   model = new ModelAndView("redirect:/jsp/produce/index.do");break;
+       case 销售经理:
+    	   model = new ModelAndView("redirect:/jsp/produce/index.do");break;
+       case 加工经理:
+    	   model = new ModelAndView("redirect:/jsp/produce/index.do");break;
+       default:
+    	   model = new ModelAndView("redirect:/jsp/produce/index.do");break;
+       }									
 		model.addObject(user);
-		
 		return model;
 		
     }
@@ -145,7 +139,7 @@ public class UserController {
         request.getSession().removeAttribute("userid");
         request.getSession().removeAttribute("password");
         ModelAndView model =null;
-        model = new ModelAndView("redirect:/jsp/common/sign_in.jsp");
+        model = new ModelAndView("redirect:/jsp/user/sign_in.jsp");
 		return model;
     }
 
@@ -153,7 +147,7 @@ public class UserController {
 	@ResponseBody
 	@RequestMapping(method = RequestMethod.POST, value = "signUp")  
     public ModelAndView addUser(User user){
-		ModelAndView model = new ModelAndView("forward:/common/jsp/common/sign_up_succ.jsp");
+		ModelAndView model = new ModelAndView("forward:sign_up_succ.jsp");
 		this.userService.addUser(user);
 	    model.addObject("user",user);
         return model;
