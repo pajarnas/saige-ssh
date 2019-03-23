@@ -1,5 +1,7 @@
+<%@ page language="java" contentType="text/html; charset=utf-8"
+	pageEncoding="utf-8"%>
 <!DOCTYPE html>
-<html lang="en">
+<html lang="cn">
 
 <head>
   <meta charset="utf-8">
@@ -40,8 +42,8 @@
 <body>
   <div class="page-404">
     <p class="text-404">Opps!</p>
-     <h2>Invalid user id or password! Please try again!</h2>
-    <a href="/lyn-ssh/jsp/common/sign_in.jsp">Return Home</a></p>
+     <h2>无效的用户名或密码! 请再试一次!</h2>
+    <a href="/lyn-ssh/jsp/common/sign_in.jsp">返回主界面</a></p>
   </div>
 
 

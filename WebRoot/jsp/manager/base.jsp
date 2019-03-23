@@ -1,10 +1,10 @@
-<%@ page language="java" contentType="text/html; charset=GB18030"
-    pageEncoding="GB18030"%>
+<%@ page language="java" contentType="text/html; charset=utf-8"
+    pageEncoding="utf-8"%>
 <!DOCTYPE html>
 <html>
 <head>
  <%@ include file="parts/resources.jsp" %>  
-<title>Insert title here</title>
+<title>主管后台界面</title>
 </head>
 <body>
 
