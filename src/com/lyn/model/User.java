@@ -13,8 +13,11 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 
+<<<<<<< HEAD
 import com.lyn.model.enums.Role;
 
+=======
+>>>>>>> branch 'master3' of https://github.com/pajarnas/saige-ssh.git
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;

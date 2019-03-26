@@ -17,11 +17,14 @@ import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 
+<<<<<<< HEAD
 import com.lyn.model.enums.Priority;
 import com.lyn.model.enums.Progress;
 import com.lyn.model.enums.Stage;
 import com.lyn.model.enums.TaskType;
 
+=======
+>>>>>>> branch 'master3' of https://github.com/pajarnas/saige-ssh.git
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -61,17 +64,33 @@ public class Task {
     @Enumerated(EnumType.STRING)
     private TaskType task_type;
     
+<<<<<<< HEAD
     @Enumerated(EnumType.STRING)
     private Priority priority;
+=======
+    private String message;
+>>>>>>> branch 'master3' of https://github.com/pajarnas/saige-ssh.git
 	
+<<<<<<< HEAD
     private int quality;
     
+=======
+>>>>>>> branch 'master3' of https://github.com/pajarnas/saige-ssh.git
 	@OneToOne
 	private User user;
 	
 	@OneToOne
 	private Product product;
+<<<<<<< HEAD
 
+=======
+	
+    private String priority;
+
+	private TaskType type;
+    
+	
+>>>>>>> branch 'master3' of https://github.com/pajarnas/saige-ssh.git
 	/**
 	 * @param id
 	 * @param name
@@ -79,14 +98,29 @@ public class Task {
 	 * @param progress
 	 * @param stage
 	 * @param task_type
+<<<<<<< HEAD
+=======
+	 * @param message
+	 * @param user
+	 * @param product
+>>>>>>> branch 'master3' of https://github.com/pajarnas/saige-ssh.git
 	 * @param priority
+<<<<<<< HEAD
 	 * @param message
 	 * @param quality
 	 * @param user
 	 * @param product
+=======
+	 * @param type
+>>>>>>> branch 'master3' of https://github.com/pajarnas/saige-ssh.git
 	 */
+<<<<<<< HEAD
 	public Task(long id, String name, String date, Progress progress, Stage stage, TaskType task_type,
 			Priority priority, int quality, User user, Product product) {
+=======
+	public Task(long id, String name, String date, Progress progress, Stage stage, TaskType task_type, String message,
+			User user, Product product, String priority, TaskType type) {
+>>>>>>> branch 'master3' of https://github.com/pajarnas/saige-ssh.git
 		super();
 		this.id = id;
 		this.name = name;
@@ -94,14 +128,31 @@ public class Task {
 		this.progress = progress;
 		this.stage = stage;
 		this.task_type = task_type;
+<<<<<<< HEAD
+=======
+		this.message = message;
+		this.user = user;
+		this.product = product;
+>>>>>>> branch 'master3' of https://github.com/pajarnas/saige-ssh.git
 		this.priority = priority;
+<<<<<<< HEAD
 		this.quality = quality;
 		this.user = user;
 		this.product = product;
+=======
+		this.type = type;
+>>>>>>> branch 'master3' of https://github.com/pajarnas/saige-ssh.git
 	}
+<<<<<<< HEAD
+=======
+
+>>>>>>> branch 'master3' of https://github.com/pajarnas/saige-ssh.git
 	
+<<<<<<< HEAD
    
     
 
 	
+=======
+>>>>>>> branch 'master3' of https://github.com/pajarnas/saige-ssh.git
 }
