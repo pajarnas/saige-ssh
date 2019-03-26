@@ -1,5 +1,8 @@
 eclipse.preferences.version=1
+<<<<<<< HEAD
 encoding//WebRoot/jsp/common/form.jsp=UTF-8
+=======
+>>>>>>> branch 'master3' of https://github.com/pajarnas/saige-ssh.git
 encoding//WebRoot/jsp/common/header.jsp=UTF-8
 encoding//WebRoot/jsp/manager/parts/aside.jsp=UTF-8
 encoding//WebRoot/jsp/manager/parts/header.jsp=UTF-8
@@ -8,6 +11,10 @@ encoding//WebRoot/jsp/user/sign_up_succ.jsp=UTF-8
 encoding//src/com/lyn/controller/ManagerController.java=UTF-8
 encoding//src/com/lyn/controller/UserController.java=UTF-8
 encoding//src/com/lyn/interceptor/AuthorizedInterceptor.java=UTF-8
+encoding//src/com/lyn/model/Progress.java=UTF-8
+encoding//src/com/lyn/model/Role.java=UTF-8
+encoding//src/com/lyn/model/Stage.java=UTF-8
+encoding//src/com/lyn/model/TaskType.java=UTF-8
 encoding//src/com/lyn/model/User.java=UTF-8
 encoding//src/com/lyn/model/enums/ProductType.java=UTF-8
 encoding//src/com/lyn/model/enums/Progress.java=UTF-8

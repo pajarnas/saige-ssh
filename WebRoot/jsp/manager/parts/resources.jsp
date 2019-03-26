@@ -6,6 +6,7 @@
 <meta name="author" content="Yaning Liu刘雅宁">
 <meta name="keyword" content="Reusable, Standard, Effective可复用、标准化、高效率">
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<<<<<<< HEAD
   <link rel="shortcut icon" href="/lyn-ssh/img/favicon.png">
 <!-- javascripts -->
   <script src="/lyn-ssh/js/jquery.js"></script>
@@ -13,7 +14,11 @@
   <!-- nice scroll -->
   <script src="/lyn-ssh/js/jquery.scrollTo.min.js"></script>
   <script src="/lyn-ssh/js/jquery.nicescroll.js" type="text/javascript"></script>
+=======
+  <link rel="shortcut icon" href="img/favicon.png">
+>>>>>>> branch 'master3' of https://github.com/pajarnas/saige-ssh.git
 
+<<<<<<< HEAD
   <!-- jquery ui -->
   <script src="/lyn-ssh/js/jquery-ui-1.9.2.custom.min.js"></script>
 
@@ -23,6 +28,8 @@
   <script src="/lyn-ssh/js/bootstrap-switch.js"></script>
   <!--custom tagsinput-->
   <script src="/lyn-ssh/js/jquery.tagsinput.js"></script>
+=======
+>>>>>>> branch 'master3' of https://github.com/pajarnas/saige-ssh.git
   <!-- Bootstrap CSS -->
   <link href="/lyn-ssh/css/bootstrap.min.css" rel="stylesheet">
   
@@ -67,4 +74,4 @@
   <link href="/lyn-ssh/css/style.css" rel="stylesheet">
   <link href="/lyn-ssh/css/style-responsive.css" rel="stylesheet" />
   <link href="/lyn-ssh/css/xcharts.min.css" rel=" stylesheet">
-  <link href="/lyn-ssh/css/jquery-ui-1.10.4.min.css" rel="stylesheet">
+  <link href="/lyn-ssh/css/jquery-ui-1.10.4.min.css" rel="stylesheet">

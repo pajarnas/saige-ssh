@@ -1,5 +1,7 @@
 package com.lyn.model;
 
+import java.io.Serializable;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
@@ -29,7 +31,7 @@ import lombok.Setter;
 @Setter
 @Getter
 @NoArgsConstructor
-public class Product {
+public class Product implements Serializable {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private long id;

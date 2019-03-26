@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <section class="panel">
                       <div class="panel-body bio-graph-info">
                         <h1> 编辑信息</h1>
@@ -73,3 +74,5 @@
 													</form>
                       </div>
                     </section>
+=======
+>>>>>>> branch 'master3' of https://github.com/pajarnas/saige-ssh.git

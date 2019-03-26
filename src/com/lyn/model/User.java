@@ -13,6 +13,7 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 
+
 import com.lyn.model.enums.Role;
 
 import lombok.Getter;

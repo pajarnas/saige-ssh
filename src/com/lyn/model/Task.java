@@ -17,10 +17,12 @@ import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 
+
 import com.lyn.model.enums.Priority;
 import com.lyn.model.enums.Progress;
 import com.lyn.model.enums.Stage;
 import com.lyn.model.enums.TaskType;
+
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -61,16 +63,22 @@ public class Task {
     @Enumerated(EnumType.STRING)
     private TaskType task_type;
     
+
     @Enumerated(EnumType.STRING)
     private Priority priority;
-	
+
     private int quality;
     
+
 	@OneToOne
 	private User user;
 	
 	@OneToOne
 	private Product product;
+
+
+
+
 
 	/**
 	 * @param id
@@ -84,6 +92,7 @@ public class Task {
 	 * @param quality
 	 * @param user
 	 * @param product
+	 * @param type
 	 */
 	public Task(long id, String name, String date, Progress progress, Stage stage, TaskType task_type,
 			Priority priority, int quality, User user, Product product) {
@@ -95,13 +104,14 @@ public class Task {
 		this.stage = stage;
 		this.task_type = task_type;
 		this.priority = priority;
+	
 		this.quality = quality;
 		this.user = user;
 		this.product = product;
+		
 	}
-	
-   
     
 
 	
+
 }
