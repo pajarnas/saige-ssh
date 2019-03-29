@@ -86,9 +86,9 @@
 	                      <label for="cname" class="control-label col-lg-2">生产产品</label>
 	                      <div class="col-lg-10">
 	       
-	                        <select name="product" form="add_task_form" class="form-control m-bot15">
+	                        <select name="productid" form="add_task_form" class="form-control m-bot15">
 	      										<c:forEach items="${products}" var="product">
-														 <option value="${product}" />${product.name}</option>
+														 <option value="${product.id}" />${product.name}</option>
 												</c:forEach>
 							</select>
 							

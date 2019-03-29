@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.CookieValue;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.SessionAttribute;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.ui.ModelMap;
 
@@ -23,6 +24,9 @@ import com.lyn.model.PTask;
 import com.lyn.model.Product;
 import com.lyn.model.Task;
 import com.lyn.model.User;
+import com.lyn.model.enums.Progress;
+import com.lyn.model.enums.Stage;
+import com.lyn.model.enums.TaskType;
 import com.lyn.service.UserService;
 import com.lyn.service.ProductService;
 import com.lyn.service.TaskService;
@@ -76,7 +80,8 @@ public class ManagerController {
 	
 	@ResponseBody
 	@RequestMapping(method = { RequestMethod.GET, RequestMethod.POST },value="insert")
-	ModelAndView insertHandler(HttpServletRequest request, HttpServletResponse response,Task task) {
+	
+	ModelAndView insertHandler(@SessionAttribute("userid") Long userId,PTask task, Long productid) {
 		
 		if(task.getName()==null) {
 			ModelAndView model = new ModelAndView("forward:insert_task.jsp");
@@ -86,10 +91,15 @@ public class ManagerController {
 			
 			return model;
 		}
-		long sessionUserid = Long.parseLong(String.valueOf(request.getSession().getAttribute("userid")));
-		User user = this.userService.findUser(sessionUserid);
-		
-	    this.taskService.addTask(task);
+		User user = this.userService.findUser(userId);
+		task.setProduct(this.productService.findById(productid));
+		task.setProgress(Progress.未开始);
+		task.setStage(Stage.待用料);
+		task.setUser(user);
+		task.setTask_type(TaskType.生产);
+	  
+		this.taskService.addPTask(task);
+	    
 		ModelAndView model = new ModelAndView("forward:insert_task.jsp");
 		return model;
 	}

@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.lyn.dao.TaskDao;
+import com.lyn.model.PTask;
 import com.lyn.model.Task;
 
 /**
@@ -64,6 +65,15 @@ public class TaskDaoImpl implements TaskDao{
 	public List<Task> getTaskList() {
 		Session s = this.sessionFactory.getCurrentSession();
 		return (List<Task>) s.createSQLQuery("select * FROM _task;").addEntity(Task.class).list();
+		
+	}
+
+	/* (non-Javadoc)
+	 * @see com.lyn.dao.TaskDao#addPTask(com.lyn.model.PTask)
+	 */
+	
+	public void addPTask(PTask ptask) {
+		sessionFactory.getCurrentSession().save(ptask);
 		
 	}
 }

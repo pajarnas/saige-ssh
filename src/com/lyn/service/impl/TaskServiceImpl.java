@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.lyn.dao.TaskDao;
+import com.lyn.model.PTask;
 import com.lyn.model.Task;
 import com.lyn.service.TaskService;
 
@@ -43,6 +44,15 @@ public class TaskServiceImpl implements TaskService{
 	
 	public List<Task> getTaskList(){
 		return this.taskDao.getTaskList();
+	}
+
+	/* (non-Javadoc)
+	 * @see com.lyn.service.TaskService#addPTask(com.lyn.model.PTask)
+	 */
+
+	public void addPTask(PTask ptask) {
+		this.taskDao.addPTask(ptask);
+		
 	}
 
 }
