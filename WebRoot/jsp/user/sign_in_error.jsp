@@ -33,11 +33,9 @@
   <div class="page-404">
     <p class="text-404">Opps!</p>
      <h2>无效的用户名或密码! 请再试一次!</h2>
-<<<<<<< HEAD
+
     <a href="/lyn-ssh/jsp/user/sign_in.jsp">返回主界面</a></p>
-=======
-    <a href="/lyn-ssh/jsp/common/sign_in.jsp">返回主界面</a></p>
->>>>>>> branch 'master3' of https://github.com/pajarnas/saige-ssh.git
+
   </div>
 
 

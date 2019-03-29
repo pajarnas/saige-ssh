@@ -38,19 +38,14 @@
   <script src="/lyn-ssh/assets/jquery-easy-pie-chart/jquery.easy-pie-chart.js"></script>
   <script src="/lyn-ssh/js/owl.carousel.js"></script>
   <!-- jQuery full calendar -->
-<<<<<<< HEAD
-  <<script src="/lyn-ssh/js/fullcalendar.min.js"></script>
+
+  <script src="/lyn-ssh/js/fullcalendar.min.js"></script>
     <!-- Full Google Calendar - Calendar -->
     <script src="/lyn-ssh/assets/fullcalendar/fullcalendar/fullcalendar.js"></script>
     <!--script for this page only-->
     <script src="/lyn-ssh/js/calendar-custom.js"></script>
-=======
-  <<script src="/js/fullcalendar.min.js"></script>
-    <!-- Full Google Calendar - Calendar -->
-    <script src="/assets/fullcalendar/fullcalendar/fullcalendar.js"></script>
-    <!--script for this page only-->
-    <script src="/js/calendar-custom.js"></script>
->>>>>>> branch 'master3' of https://github.com/pajarnas/saige-ssh.git
+
+
     <script src="/lyn-ssh/js/jquery.rateit.min.js"></script>
     <!-- custom select -->
     <script src="/lyn-ssh/js/jquery.customSelect.min.js"></script>

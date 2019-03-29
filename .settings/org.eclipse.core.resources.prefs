@@ -1,8 +1,7 @@
 eclipse.preferences.version=1
-<<<<<<< HEAD
+
 encoding//WebRoot/jsp/common/form.jsp=UTF-8
-=======
->>>>>>> branch 'master3' of https://github.com/pajarnas/saige-ssh.git
+
 encoding//WebRoot/jsp/common/header.jsp=UTF-8
 encoding//WebRoot/jsp/manager/parts/aside.jsp=UTF-8
 encoding//WebRoot/jsp/manager/parts/header.jsp=UTF-8

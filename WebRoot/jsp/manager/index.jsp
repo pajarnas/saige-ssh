@@ -18,8 +18,7 @@
 	    <!--sidebar start-->
 	    <%@ include file="parts/aside.jsp" %>  
 	    <!--sidebar end-->
-	    
-<<<<<<< HEAD
+
 	    <!-- main content section start -->
 	    <section id="main-content">
 	    	<section class="wrapper">
@@ -31,10 +30,7 @@
 			</section>
 		</section>
 	     <!--  main content section end -->
-=======
-	    
-	    
->>>>>>> branch 'master3' of https://github.com/pajarnas/saige-ssh.git
+
     
   </section>
   <!-- container section end -->
