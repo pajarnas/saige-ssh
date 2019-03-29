@@ -2,6 +2,7 @@ package com.lyn.dao;
 
 import java.util.List;
 
+import com.lyn.model.PTask;
 import com.lyn.model.Task;
 
 
@@ -20,6 +21,8 @@ public interface TaskDao {
 
 	public void addTask(Task task);
 	
+	public void addPTask(PTask ptask);
+	
 	public Task findTask(long id);
 	
 	public void upadteTask(Task user);
@@ -27,4 +30,5 @@ public interface TaskDao {
 	public void delTask(Task user);
 	
 	public List<Task> getTaskList();
+
 }

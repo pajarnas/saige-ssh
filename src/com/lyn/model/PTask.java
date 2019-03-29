@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
+import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -32,6 +33,7 @@ import lombok.Setter;
 @Entity
 @PrimaryKeyJoinColumn(name = "taskid")
 @Table(name="_ptask")
+@DiscriminatorValue("生产")
 @Getter @Setter @NoArgsConstructor 
 public class PTask extends Task{
 	

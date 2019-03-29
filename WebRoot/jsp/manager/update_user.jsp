@@ -1,11 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
     pageEncoding="utf-8"%>
-          <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
+        <%@ taglib prefix = "c" uri = "http://java.sun.com/jsp/jstl/core" %>
+        <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <!DOCTYPE html>
 <html>
 <head>
  <%@ include file="parts/resources.jsp" %>  
-<title>主管后台界面</title>
+<title>主管后台界面 | 用户资料更新</title>
 </head>
 <body>
 
@@ -17,75 +18,24 @@
 	    <!--header end-->
 	
 	    <!--sidebar start-->
-	     <%@ include file="parts/aside.jsp" %>  
+	    <%@ include file="parts/aside.jsp" %>  
 	    <!--sidebar end-->
 	    
-	     <!--main content start-->
-    <section id="main-content">
-      <section class="wrapper">
- 
-        <!-- page start-->
-        <div class="row">
+	    <!-- main content section start -->
+	    <section id="main-content">
+	    	<section class="wrapper">
+			<div class="row">
           <div class="col-lg-12">
             <section class="panel">
-              <header class="panel-heading tab-bg-info">
-                <ul class="nav nav-tabs">
-                  <li class="">
-                    <a data-toggle="tab" href="#profile">
-                                          <i class="icon-user"></i>
-                                          个人主页
-                                      </a>
-                  </li>
-                  <li class="">
-                    <a data-toggle="tab" href="#edit-profile">
-                                          <i class="icon-envelope"></i>
-                                          编辑信息
-                                      </a>
-                  </li>
-                </ul>
+              <header class="panel-heading">
+                用户资料更新表单
               </header>
+       
+
               <div class="panel-body">
-                <div class="tab-content">
-                  <!-- profile -->
-                  <div id="profile" class="tab-pane">
-                    <section class="panel">
-                     
-                      <div class="panel-body bio-graph-info">
-                        <h1>个人信息</h1>
-                        <div class="row">
-                          <div class="bio-row">
-                            <p><span>姓名 </span>: ${user.name} </p>
-                          </div>
-                          <div class="bio-row">
-                            <p><span>用户id </span>: ${user.id} </p>
-                          </div>
-                          <div class="bio-row">
-                            <p><span>生日</span>:  ${user.date}</p>
-                          </div>
-                        
-                          <div class="bio-row">
-                            <p><span>职位 </span>:  ${user.role}</p>
-                          </div>
-                          <div class="bio-row">
-                            <p><span>Email </span>: ${user.email}</p>
-                          </div>
-                          <div class="bio-row">
-                            <p><span>手机号码 </span>:  ${user.phone}</p>
-                          </div>
-                        </div>
-                      </div>
-                    </section>
-                    <section>
-                      <div class="row">
-                      </div>
-                    </section>
-                  </div>
-                  <!-- edit-profile -->
-                  <div id="edit-profile" class="tab-pane">
-                    <section class="panel">
-                      <div class="panel-body bio-graph-info">
-                        <h1> 编辑信息</h1>
-                        <form:form class="form-horizontal" id="update_user_form" role="form" method="post" action="updateUser.do" modelAttribute="user">
+                <div class="form">
+                  
+                  <form:form class="form-horizontal" id="update_user_form" role="form" method="post" action="updateUser.do" modelAttribute="user">
 														<div class="form-group">
 															<label for="exampleInputEmail1" class="col-lg-2 control-label">姓名</label> <div class="col-lg-10">
 															<input name="name" value='${user.name}' class="form-control" id="nameInput1" placeholder="Name">
@@ -155,20 +105,19 @@
                             </div>
                           </div>
 													</form:form>
-                      </div>
-                    </section>
-                  </div>
                 </div>
+
               </div>
             </section>
           </div>
         </div>
 
-        <!-- page end-->
-      </section>
-    </section>
-    <!--main content end-->
-	    
+
+
+
+			</section>
+		</section>
+	     <!--  main content section end -->
     
   </section>
   <!-- container section end -->

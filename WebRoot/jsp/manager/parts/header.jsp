@@ -15,42 +15,7 @@
         <!-- notificatoin dropdown start-->
         <ul class="nav pull-right top-menu">
 
-          <!-- task notificatoin start -->
-          <li id="task_notificatoin_bar" class="dropdown">
-            <a data-toggle="dropdown" class="dropdown-toggle" href="#">
-                            <i class="icon-task-l"></i>
-                            <span class="badge bg-important">${bars_len}</span>
-                        </a>
-            <ul class="dropdown-menu extended tasks-bar">
-              <div class="notify-arrow notify-arrow-blue"></div>
-              <li>
-                <p class="blue">You have ${bars_len} pending letter</p>
-              </li>
-              <c:forEach items="${bars}" var="bar">
-              <li>
-                <a href="#">
-                  <div class="task-info">
-                    <div class="desc">  ${bar.name} </div>
-                    <div class="percent">${bar.width}%</div>
-                  </div>
-                  <div class="progress progress-striped active">
-                    <div class="progress-bar progress-bar-${bar.color}" role="progressbar" aria-valuenow="${bar.width}" aria-valuemin="0" aria-valuemax="100" style="width: ${bar.width}%">
-                      <span class="sr-only">${bar.width}% Complete</span>
-                    </div>
-                  </div>
-                </a>
-              </li>
-					 </c:forEach>				
-              
-                 
-                
-              <li class="external">
-                <a href="#">See All Tasks</a>
-              </li>
-            </ul>
-          </li>
-          <!-- task notificatoin end -->
-        
+     
           
           <!-- user login dropdown start-->
           <li class="dropdown">

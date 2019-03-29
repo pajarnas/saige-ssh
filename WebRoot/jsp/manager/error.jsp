@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
-    pageEncoding="utf-8"%>
+	pageEncoding="utf-8"%>
 <!DOCTYPE html>
 <html lang="cn">
 
@@ -12,7 +12,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
   <link rel="shortcut icon" href="img/favicon.png">
 
-  <title>成功</title>
+  <title>失败</title>
 
   <!-- Bootstrap CSS -->
   <link href="/lyn-ssh/css/bootstrap.min.css" rel="stylesheet">
@@ -26,15 +26,16 @@
   <link href="/lyn-ssh/css/style.css" rel="stylesheet">
   <link href="/lyn-ssh/css/style-responsive.css" rel="stylesheet" />
 
+
 </head>
 
 <body>
   <div class="page-404">
-    <p class="text-404">成功!</p>
-     <h2>欢迎 ${user.name}! </h2>
-     <h2>请记住您的用户id： ${user.id}! </h2>
-     <h3>新用户请先登陆并补全个人信息再执行其他操作！！</h3> </h2>
-    <a href="./sign_in.jsp">返回主页</a></p>
+    <p class="text-404">Opps!</p>
+     <h2>${message}</h2>
+
+    <a href="index.do">返回主界面</a>
+
   </div>
 
 

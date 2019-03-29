@@ -2,11 +2,11 @@ package com.lyn.interceptor;
 
 import com.lyn.model.Product;
 import com.lyn.model.ProgressBar;
-import com.lyn.model.STask;
+
 import com.lyn.model.User;
 import com.lyn.service.PTaskService;
 import com.lyn.service.ProductService;
-import com.lyn.service.STaskService;
+
 import com.lyn.service.UserService;
 
 
@@ -47,9 +47,7 @@ public class AuthorizedInterceptor implements HandlerInterceptor {
     @Resource(name="pTaskService")
 	private PTaskService pTaskService;
 	
-	@Resource(name="sTaskService")
-	private STaskService sTaskService;
-	
+
 	@Resource(name="productService")
 	private ProductService productService;
 	

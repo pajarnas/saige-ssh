@@ -15,6 +15,7 @@ import javax.persistence.Transient;
 
 
 import com.lyn.model.enums.Role;
+import com.lyn.model.enums.TaskType;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -42,6 +43,9 @@ public class User{
 	@Enumerated(EnumType.STRING)
 	private Role role;
 	
+	@Enumerated(EnumType.STRING)
+	private TaskType task_type;
+	
 	private String email;
 	
 
@@ -52,15 +56,34 @@ public class User{
 	
 
 	private String date;
-	
-	public User(String name,String password,String email,Role role,String date,String city){
+
+
+	/**
+	 * @param id
+	 * @param name
+	 * @param password
+	 * @param role
+	 * @param task_type
+	 * @param email
+	 * @param phone
+	 * @param city
+	 * @param date
+	 */
+	public User(long id, String name, String password, Role role, TaskType task_type, String email, String phone,
+			String city, String date) {
 		super();
-		this.name=name;
-		this.password=password;
-	    this.date=date;
-	    this.role=role;
-	    this.city=city;
-		this.email=email;
+		this.id = id;
+		this.name = name;
+		this.password = password;
+		this.role = role;
+		this.task_type = task_type;
+		this.email = email;
+		this.phone = phone;
+		this.city = city;
+		this.date = date;
 	}
+
+
+
 	
 }

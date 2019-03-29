@@ -26,12 +26,12 @@ import org.springframework.ui.ModelMap;
 import com.lyn.model.PTask;
 import com.lyn.model.Product;
 import com.lyn.model.ProgressBar;
-import com.lyn.model.STask;
+
 import com.lyn.model.Task;
 import com.lyn.model.User;
 import com.lyn.service.PTaskService;
 import com.lyn.service.ProductService;
-import com.lyn.service.STaskService;
+
 import com.lyn.service.TaskService;
 import com.lyn.service.UserService;
 
@@ -57,8 +57,7 @@ public class ProduceController {
 	@Resource(name="pTaskService")
 	private PTaskService pTaskService;
 	
-	@Resource(name="sTaskService")
-	private STaskService sTaskService;
+	
 	
 	@Resource(name="productService")
 	private ProductService productService;
@@ -159,14 +158,7 @@ public class ProduceController {
         return model;
     }
 	
-	@ResponseBody
-	@RequestMapping(method = RequestMethod.GET, value = "sTaskList")  
-    public ModelAndView taskList(STask stask){
-		ModelAndView model = new ModelAndView("forward:/jsp/stock/stock_task.jsp");
-		List<STask> stasks = sTaskService.getSTaskList();
-	    model.addObject("stasks",stasks);
-        return model;
-    }
+
 	
 	@ResponseBody
 	@RequestMapping(method = RequestMethod.GET, value = "delTask")  
@@ -239,23 +231,6 @@ public class ProduceController {
         return model;
     }
 	
-	@ResponseBody
-	@RequestMapping(method = RequestMethod.GET, value = "updateSTaskStatus")  
-    public ModelAndView updateSTask(int id, int status){
-		
-	
-		STask st = this.sTaskService.findSTask(id);
-		switch(status) {
-		case 0:st.setProgress("Not Started");break;
-		case 2:st.setProgress("In Progress 50%");break;
-		case 3:st.setProgress("In Progress 80%");break;
-		case 4:st.setProgress("Completed");break;
-		case 1:st.setProgress("In Progress 20%");break;
-		}
-		ModelAndView model = new ModelAndView("redirect:/p/sTaskList.do");
-		this.sTaskService.upadteSTask(st);
-        return model;
-    }
-	
+
 	
 }

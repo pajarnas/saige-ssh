@@ -11,7 +11,7 @@
 	          <li class="sub-menu"><a href="javascript:;" class=""><i class="icon_cogs"></i><span>生产任务</span><span class="menu-arrow arrow_carrot-right"></span></a>
 			            <ul class="sub">
 			            	<li><a class="" href="insert.do">生产任务表单</a></li>
-			            	<li><a class="" href="insert.do">生产任务列表</a></li>
+			            	<li><a class="" href="ptask_table.do">生产任务列表</a></li>
 			            </ul>
 			            
 	          </li>
@@ -24,7 +24,7 @@
 	          </li>
 	          
 	          <li class="sub-menu"><a href="javascript:;" class=""><i class="icon_contacts_alt"></i><span>用户管理</span><span class="menu-arrow arrow_carrot-right"></span></a>
-			            <ul class="sub"><li> </li><li><a class="" href="insert.do">用户列表</a></li></ul>
+			            <ul class="sub"><li> </li><li><a class="" href="user_table.do">用户列表</a></li></ul>
 	          </li>
 	          
 	          <li class="sub-menu"><a href="javascript:;" class=""><i class="icon_document_alt"></i><span>任务日志</span><span class="menu-arrow arrow_carrot-right"></span></a>

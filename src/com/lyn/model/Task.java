@@ -3,6 +3,7 @@ package com.lyn.model;
 import java.util.List;
 
 import javax.persistence.Column;
+import javax.persistence.DiscriminatorColumn;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
@@ -17,6 +18,7 @@ import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 
+import org.hibernate.annotations.DiscriminatorOptions;
 
 import com.lyn.model.enums.Priority;
 import com.lyn.model.enums.Progress;
@@ -43,6 +45,8 @@ import javax.persistence.InheritanceType;
 @Entity
 @Inheritance(strategy = InheritanceType.JOINED)
 @Table(name="_Task")
+@DiscriminatorColumn(name = "task_type")
+
 @Getter @Setter @NoArgsConstructor 
 public class Task {
 	@Id
@@ -60,10 +64,8 @@ public class Task {
     @Enumerated(EnumType.STRING)
     private Stage stage;
     
-    @Enumerated(EnumType.STRING)
-    private TaskType task_type;
     
-
+  
     @Enumerated(EnumType.STRING)
     private Priority priority;
 
@@ -94,7 +96,7 @@ public class Task {
 	 * @param product
 	 * @param type
 	 */
-	public Task(long id, String name, String date, Progress progress, Stage stage, TaskType task_type,
+	public Task(long id, String name, String date, Progress progress, Stage stage,
 			Priority priority, int quality, User user, Product product) {
 		super();
 		this.id = id;
@@ -102,7 +104,7 @@ public class Task {
 		this.date = date;
 		this.progress = progress;
 		this.stage = stage;
-		this.task_type = task_type;
+	
 		this.priority = priority;
 	
 		this.quality = quality;
