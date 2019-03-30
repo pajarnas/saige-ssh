@@ -171,8 +171,10 @@ public class ManagerController {
 	@ResponseBody
 	@RequestMapping(method = { RequestMethod.GET, RequestMethod.POST },value="insert")
 	
+
     
 	ModelAndView insertHandler(@SessionAttribute("userid") Long userId,@ModelAttribute("ptask") PTask ptask, Long productid) {
+
 		
 		if(ptask.getName()==null) {
 			ModelAndView mav = new ModelAndView("forward:insert_task.jsp");
@@ -183,6 +185,7 @@ public class ManagerController {
 			return mav;
 		}
 		User user = this.userService.findUser(userId);
+
 		Task t = new Task();
 		ptask.setProduct(this.productService.findById(productid));
 		ptask.setProgress(Progress.未开始);
@@ -194,6 +197,7 @@ public class ManagerController {
 	    
 		ModelAndView mav = new ModelAndView("forward:ptask_table.do");
 		return mav;
+
 	}
 	
 	
