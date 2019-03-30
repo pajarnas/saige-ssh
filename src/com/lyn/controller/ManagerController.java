@@ -174,7 +174,13 @@ public class ManagerController {
 
     
 	ModelAndView insertHandler(@SessionAttribute("userid") Long userId,@ModelAttribute("ptask") PTask ptask, Long productid) {
+<<<<<<< HEAD
 
+=======
+=======
+	ModelAndView insertHandler(@SessionAttribute("userid") Long userId,PTask task, Long productid) {
+>>>>>>> refs/remotes/origin/master4
+>>>>>>> branch 'master4' of https://github.com/pajarnas/saige-ssh.git
 		
 		if(ptask.getName()==null) {
 			ModelAndView mav = new ModelAndView("forward:insert_task.jsp");
@@ -197,7 +203,22 @@ public class ManagerController {
 	    
 		ModelAndView mav = new ModelAndView("forward:ptask_table.do");
 		return mav;
+<<<<<<< HEAD
 
+=======
+=======
+		task.setProduct(this.productService.findById(productid));
+		task.setProgress(Progress.未开始);
+		task.setStage(Stage.待用料);
+		task.setUser(user);
+		task.setTask_type(TaskType.生产);
+	  
+		this.taskService.addPTask(task);
+	    
+		ModelAndView model = new ModelAndView("forward:insert_task.jsp");
+		return model;
+>>>>>>> refs/remotes/origin/master4
+>>>>>>> branch 'master4' of https://github.com/pajarnas/saige-ssh.git
 	}
 	
 	
