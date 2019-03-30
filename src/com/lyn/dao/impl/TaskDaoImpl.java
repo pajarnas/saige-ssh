@@ -79,4 +79,13 @@ public class TaskDaoImpl implements TaskDao{
 		sessionFactory.getCurrentSession().save(ptask);
 		
 	}
+
+	/* (non-Javadoc)
+	 * @see com.lyn.dao.TaskDao#addPTask(com.lyn.model.PTask)
+	 */
+	
+	public void addPTask(PTask ptask) {
+		sessionFactory.getCurrentSession().save(ptask);
+		
+	}
 }
