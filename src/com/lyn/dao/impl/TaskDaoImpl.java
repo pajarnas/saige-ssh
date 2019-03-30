@@ -10,8 +10,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.lyn.dao.TaskDao;
+import com.lyn.model.OTask;
 import com.lyn.model.PTask;
 import com.lyn.model.Task;
+import com.lyn.model.User;
+import com.lyn.model.enums.Role;
 
 /**
  * @author    Yaning Liu
@@ -37,6 +40,11 @@ public class TaskDaoImpl implements TaskDao{
 		return (Task)sessionFactory.getCurrentSession().get(Task.class, id);
 	}
 	
+public PTask findPTask(long id) {
+		
+		return (PTask)sessionFactory.getCurrentSession().get(PTask.class, id);
+	}
+	
 	public void delTask(Task task) {
 		sessionFactory.getCurrentSession().delete(task);
 	}
@@ -57,26 +65,13 @@ public class TaskDaoImpl implements TaskDao{
 	
 
 
-	/* (non-Javadoc)
-	 * @see com.lyn.dao.TaskDao#getTaskList()
-	 */
-	@SuppressWarnings("unchecked")
-	@Override
 	
+	@SuppressWarnings("unchecked")
 	public List<Task> getTaskList() {
 		
 		Session s = this.sessionFactory.getCurrentSession();
-		
-		return (List<Task>) s.createSQLQuery("select _task.* FROM _task;").addEntity(Task.class).list();
-		
-	}
-
-	/* (non-Javadoc)
-	 * @see com.lyn.dao.TaskDao#addPTask(com.lyn.model.PTask)
-	 */
-	
-	public void addPTask(PTask ptask) {
-		sessionFactory.getCurrentSession().save(ptask);
+//		 s.createSQLQuery("select _task.* FROM _task;")
+		return (List<Task>)s.createQuery("select e FROM Task e").list();
 		
 	}
 
@@ -87,5 +82,35 @@ public class TaskDaoImpl implements TaskDao{
 	public void addPTask(PTask ptask) {
 		sessionFactory.getCurrentSession().save(ptask);
 		
+	}
+
+	public void addOTask(OTask otask) {
+		sessionFactory.getCurrentSession().save(otask);
+		
+	}
+	
+	public User getRelatedUser(PTask ptask,Role role) {
+		Session s = this.sessionFactory.getCurrentSession();
+		switch(role){
+			case 采购用料经理:
+					List<OTask> prtasks = ptask.getPrtasks();
+				    if(prtasks.isEmpty()) {
+				    	return null;
+				    }
+				    else {
+				 	   return prtasks.get(0).getUser();
+				    }
+				      
+			default:
+				return null;
+					
+		}
+	}
+	
+	@SuppressWarnings("unchecked")
+	public List<PTask> getPTaskList(){
+Session s = this.sessionFactory.getCurrentSession();
+    
+    		return (List<PTask>) s.createSQLQuery("SELECT _task.*,_ptask.* FROM _task LEFT OUTER JOIN _ptask ON _ptask.taskid=_task .id WHERE task_type = '生产';").addEntity(PTask.class).list();
 	}
 }

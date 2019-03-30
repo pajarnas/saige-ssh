@@ -22,6 +22,8 @@ import org.springframework.web.bind.annotation.SessionAttribute;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.ui.ModelMap;
 
+import com.lyn.model.OTask;
+import com.lyn.model.OTaskTableView;
 import com.lyn.model.PTask;
 import com.lyn.model.Product;
 import com.lyn.model.ProgressBar;
@@ -38,13 +40,13 @@ import com.lyn.service.TaskService;
  *
  * @filename  ManagerController.java
  *
- * @date      2019-03-01
+ * @date      2019-03-29
  *
  */
 
 @Controller
-@RequestMapping("/jsp/manager")
-public class ManagerController {
+@RequestMapping("/jsp/purchaser")
+public class PurchaserController {
 	
 	@Resource(name="userService")
 	private UserService userService;
@@ -76,10 +78,9 @@ public class ManagerController {
 	
 	@ResponseBody
 	@RequestMapping(method = RequestMethod.GET,value="profile.do")
-	ModelAndView profileHandler(HttpServletRequest request, HttpServletResponse response) {
+	ModelAndView profileHandler(@SessionAttribute("userid") Long userId) {
 		ModelAndView model = new ModelAndView("forward:profile.jsp");
-		HttpSession session = request.getSession();
-		User u = userService.findUser(Long.parseLong(String.valueOf(session.getAttribute("userid"))));
+		User u = userService.findUser(userId);
 		
 		model.addObject(u);
 		return model;
@@ -97,31 +98,17 @@ public class ManagerController {
     }
 	
 	@ResponseBody
-	@RequestMapping(method = { RequestMethod.GET, RequestMethod.POST }, value = "error")  
-    public ModelAndView displayError(String message){
+	@RequestMapping(method = { RequestMethod.GET, RequestMethod.POST }, value = "takeTask")  
+    public ModelAndView takeTask(Long id){
 		
+		PTask t = this.taskService.findPTask(id);
 		
-		ModelAndView mav = new ModelAndView("forward:error.jsp");
-		mav.addObject("message",message);
+		ModelAndView mav = new ModelAndView("forward:ptask_table.do");
+		this.taskService.delTask(t);
 		return mav;
     }
+
 	
-	@ResponseBody
-	@RequestMapping(method = { RequestMethod.GET, RequestMethod.POST }, value = "delUser")  
-    public ModelAndView delUser(@SessionAttribute("userid") Long userId,Long id){
-		
-		if(userId == id) {
-			ModelAndView mav = new ModelAndView("forward:error.do?message=无法删除当前用户");
-			
-			return mav;
-		}
-		
-		User u = this.userService.findUser(id);
-		
-		ModelAndView mav = new ModelAndView("forward:user_table.do");
-		this.userService.delUser(u);
-		return mav;
-    }
 	@ResponseBody
 	@RequestMapping(method = { RequestMethod.GET, RequestMethod.POST }, value = "updateTask")  
     public ModelAndView updateTask(@ModelAttribute("ptask") PTask ptask,Long id,Long productid){
@@ -150,22 +137,6 @@ public class ManagerController {
 		return mav;
     }
 	
-	@ResponseBody
-	@RequestMapping(method = { RequestMethod.GET, RequestMethod.POST }, value = "updateUser")  
-    public ModelAndView updateUser(@ModelAttribute("user") User user,Long id){
-		if(user.getName()==null) {
-			ModelAndView mav = new ModelAndView("forward:update_user.jsp");
-			
-		
-			
-			mav.addObject("user", this.userService.findUser(id));
-			
-			return mav;
-		}
-		ModelAndView model = new ModelAndView("redirect:index.do");
-		this.userService.upadteUser(user);
-        return model;
-    }
 	
 	
 	@ResponseBody
@@ -173,27 +144,28 @@ public class ManagerController {
 	
 
     
-	ModelAndView insertHandler(@SessionAttribute("userid") Long userId,@ModelAttribute("ptask") PTask ptask, Long productid) {
+	ModelAndView insertHandler(@SessionAttribute("userid") Long userId,@ModelAttribute("otask") OTask otask, Long ptaskid, Long productid) {
 
 		
-		if(ptask.getName()==null) {
+		if(otask.getName()==null) {
 			ModelAndView mav = new ModelAndView("forward:insert_task.jsp");
 			List<Product> products = this.productService.getProductList();
-			mav.addObject("products", products);
-		    
+			mav.addObject("ptaskid", ptaskid);
+		    mav.addObject("products",products);
 			
 			return mav;
 		}
 		User user = this.userService.findUser(userId);
-
+        PTask ptask = this.taskService.findPTask(ptaskid);
+        
 		Task t = new Task();
-		ptask.setProduct(this.productService.findById(productid));
-		ptask.setProgress(Progress.未开始);
-		ptask.setStage(Stage.待用料);
-		ptask.setUser(user);
-		
-	  
-		this.taskService.addPTask(ptask);
+		otask.setProduct(this.productService.findById(productid));
+		otask.setProgress(Progress.未开始);
+		otask.setStage(Stage.待用料);
+		otask.setUser(user);
+		otask.setPtask(ptask);
+		this.taskService.addOTask(otask);
+	    
 		ModelAndView mav = new ModelAndView("forward:ptask_table.do");
 		return mav;
 
@@ -204,35 +176,21 @@ public class ManagerController {
 	
 	@ResponseBody
 	@RequestMapping(method = { RequestMethod.GET, RequestMethod.POST }, value = "ptask_table")  
-    public ModelAndView taskList(){
+    public ModelAndView taskList(@SessionAttribute("userid") Long userId){
 		ModelAndView model = new ModelAndView("forward:table_task.jsp");
-		List<Task> ptasks = taskService.getTaskList();
-	    model.addObject("ptasks",ptasks);
-        return model;
-    }
-	
-	@ResponseBody
-	@RequestMapping(method = { RequestMethod.GET, RequestMethod.POST }, value = "user_table")  
-    public ModelAndView userList(){
-		ModelAndView model = new ModelAndView("forward:table_user.jsp");
-		List<User> users = this.userService.getUserList();
-	    model.addObject("users",users);
+		List<PTask> ptasks = taskService.getPTaskList();
+		  List<OTaskTableView> ptasklist = new ArrayList<OTaskTableView>();
+		    for(PTask t:ptasks) {
+		    	ptasklist.add(new OTaskTableView(t,this.taskService.getRelatedUser(t, this.userService.findUser(userId).getRole())));
+		    }
+
+		    model.addObject("ptasklist",ptasklist);
+	  
         return model;
     }
 	
 
-	
-	@ResponseBody
-	@RequestMapping(method = RequestMethod.POST, value = "addUser")  
-    public ModelAndView addUser2(User user){
-		ModelAndView model = new ModelAndView("redirect:user_table.do");
-		this.userService.addUser(user);
-	    model.addObject("user",user);
-        return model;
-    }
-	
 
-	
 	
 	@ResponseBody
 	@RequestMapping(method = RequestMethod.GET, value = "updateTaskStatus")  

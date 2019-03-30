@@ -43,8 +43,7 @@ public class User{
 	@Enumerated(EnumType.STRING)
 	private Role role;
 	
-	@Enumerated(EnumType.STRING)
-	private TaskType task_type;
+	
 	
 	private String email;
 	

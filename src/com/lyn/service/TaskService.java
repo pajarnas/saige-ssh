@@ -2,8 +2,11 @@ package com.lyn.service;
 
 import java.util.List;
 
+import com.lyn.model.OTask;
 import com.lyn.model.PTask;
 import com.lyn.model.Task;
+import com.lyn.model.User;
+import com.lyn.model.enums.Role;
 /**
  * @author    Yaning Liu
  *
@@ -20,12 +23,21 @@ public interface TaskService {
 	
 	public void addPTask(PTask ptask);
 	
+	public void addOTask(OTask otask);
+	
 	public Task findTask(long id);
+	
+	public PTask findPTask(long id);
 	
 	public void upadteTask(Task task);
 	
 	public void delTask(Task task);
 	
 	public List<Task> getTaskList();
+	
+	public User getRelatedUser( PTask ptask,Role role);
+	
+	public List<PTask> getPTaskList();
+	
 
 }

@@ -6,8 +6,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.lyn.dao.TaskDao;
+import com.lyn.model.OTask;
 import com.lyn.model.PTask;
 import com.lyn.model.Task;
+import com.lyn.model.User;
+import com.lyn.model.enums.Role;
 import com.lyn.service.TaskService;
 
 /**
@@ -33,6 +36,10 @@ public class TaskServiceImpl implements TaskService{
 	public Task findTask(long id) {
 		return taskDao.findTask(id);
 	}
+	
+	public PTask findPTask(long id) {
+		return taskDao.findPTask(id);
+	}
 
 	public void upadteTask(Task task) {
 		taskDao.upadteTask(task);		
@@ -46,13 +53,22 @@ public class TaskServiceImpl implements TaskService{
 		return this.taskDao.getTaskList();
 	}
 
-	/* (non-Javadoc)
-	 * @see com.lyn.service.TaskService#addPTask(com.lyn.model.PTask)
-	 */
+
 
 	public void addPTask(PTask ptask) {
 		this.taskDao.addPTask(ptask);
 		
+	}
+	public void addOTask(OTask otask) {
+		this.taskDao.addOTask(otask);
+	}
+
+	public User getRelatedUser(PTask ptask, Role role) {
+		return this.taskDao.getRelatedUser(ptask, role);
+	}
+	
+	public List<PTask> getPTaskList(){
+		return this.taskDao.getPTaskList();
 	}
 
 }

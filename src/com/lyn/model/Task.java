@@ -1,6 +1,5 @@
 package com.lyn.model;
 
-import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.DiscriminatorColumn;
@@ -10,20 +9,14 @@ import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToMany;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
+
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
-import javax.persistence.Transient;
-
-import org.hibernate.annotations.DiscriminatorOptions;
 
 import com.lyn.model.enums.Priority;
 import com.lyn.model.enums.Progress;
 import com.lyn.model.enums.Stage;
-import com.lyn.model.enums.TaskType;
+
 
 
 import lombok.Getter;
@@ -46,7 +39,6 @@ import javax.persistence.InheritanceType;
 @Inheritance(strategy = InheritanceType.JOINED)
 @Table(name="_Task")
 @DiscriminatorColumn(name = "task_type")
-
 @Getter @Setter @NoArgsConstructor 
 public class Task {
 	@Id
@@ -70,7 +62,6 @@ public class Task {
     private Priority priority;
 
     private int quality;
-    
 
 	@OneToOne
 	private User user;

@@ -112,15 +112,15 @@ public class UserController {
        case 主管经理:
     	   model = new ModelAndView("redirect:/jsp/manager/index.do");break;
        case 采购用料经理:
-    	   model = new ModelAndView("redirect:/jsp/produce/index.do");break;
+    	   model = new ModelAndView("redirect:/jsp/purchaser/index.do");break;
        case 仓库经理:
-    	   model = new ModelAndView("redirect:/jsp/produce/index.do");break;
+    	   model = new ModelAndView("redirect:/jsp/stock/index.do");break;
        case 销售经理:
-    	   model = new ModelAndView("redirect:/jsp/produce/index.do");break;
+    	   model = new ModelAndView("redirect:/jsp/sale/index.do");break;
        case 加工经理:
-    	   model = new ModelAndView("redirect:/jsp/produce/index.do");break;
+    	   model = new ModelAndView("redirect:/jsp/process/index.do");break;
        default:
-    	   model = new ModelAndView("redirect:/jsp/produce/index.do");break;
+    	   model = new ModelAndView("redirect:/jsp/manager/index.do");break;
        }									
 		model.addObject(user);
 		return model;
