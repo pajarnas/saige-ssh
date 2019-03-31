@@ -51,7 +51,7 @@
         <div class="input-group">
           <span class="input-group-addon"><i class="icon_key_alt"></i></span>
           <input name="password" type="password" class="form-control" placeholder="密码">
-          <input name="role" type="hidden" value="主管经理">
+          <input name="role" type="hidden" value="待分配">
         </div>
      <span class="pull-right"> <a href="/lyn-ssh/jsp/user/sign_in.jsp"> 已有账户？</a></span>
          <button class="btn btn-info btn-lg btn-block" type="submit">注册</button>

@@ -5,7 +5,7 @@
 <html>
 <head>
  <%@ include file="parts/resources.jsp" %>  
-<title>主管后台界面</title>
+<title>主管后台界面 | 首页</title>
 </head>
 <body>
 
@@ -36,7 +36,7 @@
                   </div>
                   <div class="col-lg-4">
                     <span class="profile-ava pull-right">
-                                        <img alt="" class="simple" src="/lyn-ssh/img/avatar1_small.jpg">
+                                        <img alt="" class="simple" src="/lyn-ssh/img/avatar1_small.jpg"/>
                                           ${user.name}
                                 </span>
                   </div>
@@ -44,6 +44,19 @@
               </div>
               <table class="table table-hover personal-task">
                 <tbody>
+                <tr>
+										<th> 任务日期</th>
+										<th> 任务名</th>
+										
+										<th> 任务优先级</th>
+									<th> 任务类型</th>
+									
+										<th>主管</th>
+								<th> 任务进度                       </th>
+									
+										
+									
+									</tr>
                    <c:forEach items="${bars}" var="bar">
                   <tr>
                     <td>${bar.date}</td>
@@ -53,7 +66,12 @@
                     <td>
                       <span class="badge bg-${bar.priority}"><c:out value="${bar.priority}" /></span>
                     </td>
-             
+             		 <td>
+                      <span><c:out value="${bar.type}" /></span>
+                    </td>
+                    <td>
+                      ${bar.user_name}
+                    </td>
                     <td>
                     <div class="progress progress-striped active progress-lg ">
                        
@@ -64,9 +82,7 @@
                   </div>
                 
                     </td>
-                    <td>
-                      ${bar.user_name}
-                    </td>
+                    
                   </tr>
                      </c:forEach>
                 </tbody>

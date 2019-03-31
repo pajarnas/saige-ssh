@@ -89,7 +89,7 @@
 					                       <div class="form-group ">
 					                      <label for="cname" class="control-label col-lg-2">Quality <span class="required">*</span></label>
 					                      <div class="col-lg-10">
-					                        <input class="form-control " id="cname" type="number" name="quality" required />
+					                        <input class="form-control " id="cname" min="1" step="1" type="number" name="quality" required />
 					                      </div>
 					                    </div>
 					                 

@@ -13,6 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.CookieValue;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -120,13 +121,31 @@ public class UserController {
        case 加工经理:
     	   model = new ModelAndView("redirect:/jsp/process/index.do");break;
        default:
-    	   model = new ModelAndView("redirect:/jsp/manager/index.do");break;
+    	   model = new ModelAndView("redirect:profile.do");break;
        }									
 		model.addObject(user);
 		return model;
 		
     }
-
+	@ResponseBody
+	@RequestMapping(method = { RequestMethod.GET, RequestMethod.POST }, value = "updateProfile")  
+    public ModelAndView updateProfile(@ModelAttribute("user") User user,Long id){
+		ModelAndView model = new ModelAndView("redirect:/jsp/user/logout.do");
+		this.userService.upadteUser(user);
+        return model;
+    }
+	
+	@ResponseBody
+	@RequestMapping(method = RequestMethod.GET,value="profile.do")
+	ModelAndView profileHandler(HttpServletRequest request, HttpServletResponse response) {
+		ModelAndView model = new ModelAndView("forward:profile.jsp");
+		HttpSession session = request.getSession();
+		User u = userService.findUser(Long.parseLong(String.valueOf(session.getAttribute("userid"))));
+		
+		model.addObject(u);
+		return model;
+	}
+	
 	@ResponseBody
 	@RequestMapping(method = RequestMethod.GET, value = "logout")
     public ModelAndView logout(HttpServletRequest request,HttpServletResponse response){

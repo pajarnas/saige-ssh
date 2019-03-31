@@ -31,7 +31,7 @@
 
 <body>
   <div class="page-404">
-    <p class="text-404">Opps!</p>
+    <p class="text-404">Oops!</p>
      <h2>无效的用户名或密码! 请再试一次!</h2>
 
     <a href="/lyn-ssh/jsp/user/sign_in.jsp">返回主界面</a></p>
