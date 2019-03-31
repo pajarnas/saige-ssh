@@ -6,7 +6,7 @@
 <html>
 <head>
  <%@ include file="parts/resources.jsp" %>  
-<title>主管后台界面 | 生产任务表</title>
+<title>主管后台界面 | 总任务表</title>
 </head>
 <body>
 
@@ -36,14 +36,14 @@
 									<tr>
 										<th> 任务名</th>
 										<th> 编号</th>
-										
+										<th> 任务时间</th>
 										<th> 任务优先级</th>
+										<th>任务进度</th>
 									
-										<th> 任务阶段</th>
 										<th> 产品名</th>
 										<th> 数量</th>
-										<th> 任务主管</th>
-										<th>用料\采购人</th>
+										<th> 任务负责人</th>
+										
 										<th>操作</th>
 										<!-- <th>采购人 </th>
 										<th>仓管人 </th>
@@ -54,18 +54,20 @@
 										<tr>
 											<td><c:out value="${ptask.name}" /></td>
 											<td><c:out value="${ptask.id}" /></td>
-										
+											<td><c:out value="${ptask.date}" /></td>
 											<td><span class="badge bg-${ptask.priority}"><c:out value="${ptask.priority}" /></span></td>
-											
-											<td><c:out value="${ptask.stage}" /></td>
+											<td><c:out value="${ptask.progress}" /></td>
+										
 											
 											<td><c:out value="${ptask.product.name}" /></td>
 											<td><c:out value="${ptask.quality}" /></td>
 											<td><c:out value="${ptask.user.name}" /></td>
-											<td><c:out value="${ptask.pur_user.name}" /></td>
+											
 										 	<td>
 											<div class="btn-group">
-												<a class="btn btn-primary" href="insert.do?ptaskid=${ptask.id }" ><i class="icon_plus_alt2">接管</i></a>  
+												
+												 
+												<a class="btn btn-danger" href="delTask.do?id=${ptask.id}"><i class="icon_close_alt2"></i></a>
 												</div>
 											</td> 
 										</tr>

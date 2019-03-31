@@ -3,6 +3,7 @@ package com.lyn.dao;
 import java.util.List;
 
 import com.lyn.model.OTask;
+import com.lyn.model.OTaskTableView;
 import com.lyn.model.PTask;
 import com.lyn.model.Task;
 import com.lyn.model.User;
@@ -32,14 +33,20 @@ public interface TaskDao {
 	
 	public Task findTask(long id);
 	
+	public OTask findOTask(long id);
+	
 	public void upadteTask(Task task);
 	
 	public void delTask(Task task);
 	
-	public User getRelatedUser( PTask ptask,Role role);
+	public List<OTaskTableView> getRelatedUser( User user);
 	
 	public List<Task> getTaskList();
 	
 	public List<PTask> getPTaskList();
+	
+	public List<OTask> getOTaskList();
+	
+	public List<OTask> getOTaskListByUser(User user, PTask ptask);
 
 }

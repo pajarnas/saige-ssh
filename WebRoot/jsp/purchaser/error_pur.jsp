@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
-    pageEncoding="utf-8"%>
+	pageEncoding="utf-8"%>
+	   <%@ taglib prefix = "c" uri = "http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="cn">
 
@@ -12,7 +13,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
   <link rel="shortcut icon" href="img/favicon.png">
 
-  <title>成功</title>
+  <title>失败</title>
 
   <!-- Bootstrap CSS -->
   <link href="/lyn-ssh/css/bootstrap.min.css" rel="stylesheet">
@@ -26,15 +27,33 @@
   <link href="/lyn-ssh/css/style.css" rel="stylesheet">
   <link href="/lyn-ssh/css/style-responsive.css" rel="stylesheet" />
 
+
 </head>
 
 <body>
   <div class="page-404">
-    <p class="text-404">成功!</p>
-     <h2>欢迎 ${user.name}! </h2>
-     <h2>请记住您的用户id： ${user.id}! </h2>
-     <h3>新用户请先登陆并补全个人信息再执行其他操作！！</h3> 
-    <a href="./sign_in.jsp">返回主页</a>
+    <p class="text-404">Opps!</p>
+     <h2>提交失败!</h2>
+	<h3>以下采购任务未完成，无法提交，手动设置进度！</h3>
+	<table>
+	<tr>
+		<th>任务名</th>
+		<th>任务编号</th>
+		<th>进度</th>
+		
+	</tr>
+	
+	<c:forEach items="${otasks}" var="otask">
+	<tr>
+		<td><c:out value="${otask.name}" /></td>
+		<td><c:out value="${otask.id}" /></td>
+		<td><c:out value="${otask.progress}" /></td>
+		</tr>
+		</c:forEach>
+	
+	</table>
+    <a href="pur_table.do">返回</a>
+
   </div>
 
 

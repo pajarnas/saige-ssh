@@ -47,4 +47,5 @@ public class OTask extends Task{
     @JoinColumn(name="ptask_id", nullable=false)
     private PTask ptask;
 	
+	private boolean stocked = false;
 }

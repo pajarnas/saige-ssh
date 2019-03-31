@@ -89,8 +89,9 @@
 	                      <div class="col-lg-10">
 	       
 	                        <select name="productid" form="add_task_form" class="form-control m-bot15">
+	                        
 	      										<c:forEach items="${products}" var="product">
-														 <option value="${product.id}" />${product.name}</option>
+														 <option value="${product.id}" />${product.name}--${product.product_type}</option>
 												</c:forEach>
 							</select>
 							
@@ -118,6 +119,7 @@
 											
 
 			</section>
+		</section>
 		</section>
     <!--main content end-->
   <!-- container section end -->

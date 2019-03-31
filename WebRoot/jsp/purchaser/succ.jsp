@@ -12,7 +12,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
   <link rel="shortcut icon" href="img/favicon.png">
 
-  <title>成功</title>
+  <title>提交成功</title>
 
   <!-- Bootstrap CSS -->
   <link href="/lyn-ssh/css/bootstrap.min.css" rel="stylesheet">
@@ -31,10 +31,10 @@
 <body>
   <div class="page-404">
     <p class="text-404">成功!</p>
-     <h2>欢迎 ${user.name}! </h2>
-     <h2>请记住您的用户id： ${user.id}! </h2>
-     <h3>新用户请先登陆并补全个人信息再执行其他操作！！</h3> 
-    <a href="./sign_in.jsp">返回主页</a>
+     <h2>提交成功! </h2>
+     <h2>生产任务进入下一阶段 </h2>
+   
+    <a href="ptask_table.do">返回</a>
   </div>
 
 

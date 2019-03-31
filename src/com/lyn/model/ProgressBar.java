@@ -4,6 +4,8 @@ import com.lyn.model.Task;
 import com.lyn.model.enums.Priority;
 import com.lyn.model.enums.ProductType;
 import com.lyn.model.enums.Progress;
+import com.lyn.model.enums.TaskType;
+
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -26,7 +28,7 @@ public class ProgressBar {
    private String date;
    private Priority priority;
 	private long task_id;
-	
+	private TaskType type;
 
 	/**
 	 * @param width
@@ -43,6 +45,7 @@ public class ProgressBar {
 		this.date = task.getDate();
 		this.priority = task.getPriority();
 		this.user_name = task.getUser().getName();
+		this.type=task.getType();
 	}
 	
 	
