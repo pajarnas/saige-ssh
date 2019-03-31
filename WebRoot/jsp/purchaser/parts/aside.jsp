@@ -9,24 +9,20 @@
 	          </li>
 	          
 	          <li class="sub-menu"><a href="ptask_table.do" class=""><i class="icon_cogs"></i><span>生产任务</span><span class="menu-arrow arrow_carrot-right"></span></a>
-			        
 	          </li>
 	          
-	           <li class="sub-menu"><a href="javascript:;" class=""><i class="icon_balance"></i><span>用料任务</span><span class="menu-arrow arrow_carrot-right"></span></a>
-			            <ul class="sub">
-			            	<li><a class="" href="insert.do">销售任务</a></li>
-			             	<li><a class="" href="insert.do">销售列表</a></li>
-			            </ul>
+	           <li class="sub-menu"><a href="material_table.do" class=""><i class="icon_balance"></i><span>用料任务</span><span class="menu-arrow arrow_carrot-right"></span></a>
 	          </li>
 	          
-	          <li class="sub-menu"><a href="javascript:;" class=""><i class="icon_contacts_alt"></i><span>用户管理</span><span class="menu-arrow arrow_carrot-right"></span></a>
-			            <ul class="sub"><li> </li><li><a class="" href="user_table.do">用户列表</a></li></ul>
+	          <li class="sub-menu"><a href="pur_table.do" class=""><i class="icon_contacts_alt"></i><span>采购任务</span><span class="menu-arrow arrow_carrot-right"></span></a>
 	          </li>
 	          
 	          <li class="sub-menu"><a href="javascript:;" class=""><i class="icon_document_alt"></i><span>任务日志</span><span class="menu-arrow arrow_carrot-right"></span></a>
-			            <ul class="sub"><li> </li><li><a class="" href="insert.do">任务日志列表</a></li></ul>
 	          </li>
-
+	          
+			  <li class="sub-menu"><a href="javascript:;" class=""><i class="icon_contacts_alt"></i><span>库存查询</span><span class="menu-arrow arrow_carrot-right"></span></a>
+	          </li>
+	          
 	           <li class="sub-menu"><a href="profile.do" class=""> <i class="fa fa-user-md"></i> <span>个人主页</span><span class="menu-arrow arrow_carrot-right"></span></a>
 	          </li>
 

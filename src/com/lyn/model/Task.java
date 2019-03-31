@@ -10,14 +10,14 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
+
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 import com.lyn.model.enums.Priority;
 import com.lyn.model.enums.Progress;
-import com.lyn.model.enums.Stage;
 
-
+import com.lyn.model.enums.TaskType;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -25,6 +25,8 @@ import lombok.Setter;
 
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 /**
  * @author    Yaning Liu
  *
@@ -39,7 +41,9 @@ import javax.persistence.InheritanceType;
 @Inheritance(strategy = InheritanceType.JOINED)
 @Table(name="_Task")
 @DiscriminatorColumn(name = "task_type")
+
 @Getter @Setter @NoArgsConstructor 
+
 public class Task {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
@@ -53,17 +57,19 @@ public class Task {
     @Enumerated(EnumType.STRING)
     private Progress progress;
     
+   
+    
     @Enumerated(EnumType.STRING)
-    private Stage stage;
-    
-    
+    private TaskType type;
   
     @Enumerated(EnumType.STRING)
     private Priority priority;
 
     private int quality;
 
-	@OneToOne
+	@ManyToOne
+	@JoinColumn(name="user_id", nullable=false)
+	
 	private User user;
 	
 	@OneToOne
@@ -87,15 +93,15 @@ public class Task {
 	 * @param product
 	 * @param type
 	 */
-	public Task(long id, String name, String date, Progress progress, Stage stage,
-			Priority priority, int quality, User user, Product product) {
+	public Task(long id, String name, String date, Progress progress, 
+			Priority priority, int quality, User user, Product product,TaskType type) {
 		super();
 		this.id = id;
 		this.name = name;
 		this.date = date;
 		this.progress = progress;
-		this.stage = stage;
-	
+		
+	    this.type = type;
 		this.priority = priority;
 	
 		this.quality = quality;

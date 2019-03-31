@@ -75,7 +75,7 @@
                        <div class="form-group ">
                       <label for="cname" class="control-label col-lg-2">生产数量 <span class="required">*</span></label>
                       <div class="col-lg-10">
-                        <input class="form-control " id="cname" type="number" name="quality" required />
+                        <input class="form-control " id="cname" min="1" step="1"  type="number" name="quality" required />
                       </div>
                     </div>
                     
@@ -89,8 +89,9 @@
 	                      <div class="col-lg-10">
 	       
 	                        <select name="productid" form="add_task_form" class="form-control m-bot15">
+	                        
 	      										<c:forEach items="${products}" var="product">
-														 <option value="${product.id}" />${product.name}</option>
+														 <option value="${product.id}" />${product.name}--${product.product_type}</option>
 												</c:forEach>
 							</select>
 							
@@ -118,6 +119,7 @@
 											
 
 			</section>
+		</section>
 		</section>
     <!--main content end-->
   <!-- container section end -->

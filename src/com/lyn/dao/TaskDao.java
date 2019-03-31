@@ -32,14 +32,28 @@ public interface TaskDao {
 	
 	public Task findTask(long id);
 	
+	public OTask findOTask(long id);
+	
 	public void upadteTask(Task task);
 	
 	public void delTask(Task task);
-	
-	public User getRelatedUser( PTask ptask,Role role);
+
 	
 	public List<Task> getTaskList();
 	
+	public List<Task> getTaskListByUser(User user);
+	
 	public List<PTask> getPTaskList();
-
+	
+	public List<PTask> getPTaskListByUser(User user);
+	
+	public List<OTask> getOTaskList();
+	
+	public List<OTask> getOTaskListByUser(User user, PTask ptask);
+	
+	public List<OTask> getOTaskListByUser(User user);
+	
+	public List<OTask> getOTaskListByPTask( PTask ptask);
+	
+	public List<Task> getTasksWithUser(User user);
 }

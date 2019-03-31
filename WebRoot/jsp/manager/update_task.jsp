@@ -6,7 +6,7 @@
 <html>
 <head>
  <%@ include file="parts/resources.jsp" %>  
-<title>主管后台界面</title>
+<title>主管后台界面 | 生产任务更新</title>
 </head>
 <body>
 
@@ -91,7 +91,7 @@
                        <div class="form-group ">
                       <label for="cname" class="control-label col-lg-2">生产数量 <span class="required">*</span></label>
                       <div class="col-lg-10">
-                        <input class="form-control " id="cname" type="number" name="quality" value="${task.quality }" required />
+                        <input class="form-control " id="cname" min="1" step="1" type="number" name="quality" value="${task.quality }" required />
                       </div>
                     </div>
                     
@@ -105,9 +105,9 @@
 	                      <div class="col-lg-10">
 	       
 	                        <select name="productid" form="add_task_form" class="form-control m-bot15">
-	                         <option selected="selected" value="${task.product.id}" />${task.product.name}</option>
+	                         <option selected="selected" value="${task.product.id}" />${task.product.name} -- ${task.product.product_type}</option>
 	      										<c:forEach items="${products}" var="product">
-														 <option value="${product.id}" />${product.name}</option>
+														 <option value="${product.id}" />${product.name}--${product.product_type}</option>
 												</c:forEach>
 							</select>
 							

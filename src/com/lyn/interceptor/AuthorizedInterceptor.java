@@ -71,12 +71,12 @@ public class AuthorizedInterceptor implements HandlerInterceptor {
          if(requestUri.startsWith(request.getContextPath())){  
              requestUri = requestUri.substring(request.getContextPath().length(), requestUri.length());  
          }  
-         //系统根目录  
+         //u系统根目录  
          if (StringUtils.pathEquals("/",requestUri)) {  
              return true;  
          }  
          System.out.println("_______"+requestUri);
-         //放行exceptUrls中配置的url  
+         //u放行exceptUrls中配置的url  
          for (String url:exceptUrls  
               ) {  
         	 System.out.println(url);
@@ -103,6 +103,7 @@ public class AuthorizedInterceptor implements HandlerInterceptor {
         	return false;
         }
         String sessionId = session.getId();
+        session.setMaxInactiveInterval(1200);
         for(Cookie cookie:cookies){
             if (cookie.getName().equals("JSESSIONID")) {
                 if(!cookie.getValue().equals(sessionId)){
@@ -162,6 +163,7 @@ public class AuthorizedInterceptor implements HandlerInterceptor {
     	int sessionUserid = Integer.parseInt(String.valueOf(session.getAttribute("userid")));
     	User user = this.userService.findUser(sessionUserid);
     	session.setAttribute("username", user.getName());
+    	
     }
  
     /**

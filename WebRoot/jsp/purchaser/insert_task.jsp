@@ -30,7 +30,7 @@
           <div class="col-lg-12">
             <section class="panel">
               <header class="panel-heading">
-                生产任务表单
+                用料\采购任务表单
               </header>
        
 
@@ -44,7 +44,7 @@
                 <div class="form">
                   <form:form class="form-validate form-horizontal" id="add_task_form" method="post" action="insert.do" modelAttribute="otask">
                     <div class="form-group ">
-                      <label for="cname" class="control-label col-lg-2">用料任务名 <span class="required">*</span></label>
+                      <label for="cname" class="control-label col-lg-2">任务名 <span class="required">*</span></label>
                       <div class="col-lg-10">
                         <input class="form-control" id="cname" name="name" minlength="5" type="text" required />
                       </div>
@@ -82,13 +82,39 @@
 	                      </div>
 	                    </div>
                       
-            
-                    
+            			     <div class="form-group ">
+	                      <label for="cname" class="control-label col-lg-2">任务类型<span class="required">*</span></label>
+	                      <div class="col-lg-10">
+	       
+	                         <select name="type" form="add_task_form" class="form-control m-bot15">
+																		<option >采购</option>
+	                                                                    <option selected="selected">用料</option>
+	                                                                 
+	                         </select>
+	                         <span class="help-block">采购任务请选择采购。</span>
+	                      </div>
+	                    </div>
+                          
+	                       <div class="form-group ">
+	                      <label for="cname" class="control-label col-lg-2">用料<span class="required">*</span></label>
+	                      <div class="col-lg-10">
+	       
+	                        <select name="productid" form="add_task_form" class="form-control m-bot15">
+	                        
+	      										<c:forEach items="${products}" var="product">
+														 <option value="${product.id}" />${product.name}-${product.product_type}</option>
+												</c:forEach>
+							</select>
+							<span class="help-block">产品类型任务请选择用料类型。</span>
+							
+	                      </div>
+	                    </div>
                     
                        <div class="form-group ">
-                      <label for="cname" class="control-label col-lg-2">用料数量 <span class="required">*</span></label>
+                      <label for="cname" class="control-label col-lg-2">数量 <span class="required">*</span></label>
                       <div class="col-lg-10">
-                        <input class="form-control " id="cname" type="number" name="quality" required />
+                        <input class="form-control " id="cname" min="1" step="1" type="number" name="quality" required />
+                        
                       </div>
                     </div>
                     
@@ -96,19 +122,7 @@
 	                  
                   
 	    
-	                    
-	                       <div class="form-group ">
-	                      <label for="cname" class="control-label col-lg-2">用料</label>
-	                      <div class="col-lg-10">
-	       
-	                        <select name="productid" form="add_task_form" class="form-control m-bot15">
-	      										<c:forEach items="${products}" var="product">
-														 <option value="${product.id}" />${product.name}</option>
-												</c:forEach>
-							</select>
-							
-	                      </div>
-	                    </div>
+	              
 	                    	
 	                    
 	          

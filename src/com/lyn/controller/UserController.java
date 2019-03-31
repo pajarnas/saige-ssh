@@ -13,6 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.CookieValue;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -26,49 +27,12 @@ import com.lyn.service.UserService;
 @Controller
 @RequestMapping("/jsp/user")
 public class UserController {
-	
-	//¶ÔUserService½Ó¿Ú£¬µ±Ö»ÓÐÒ»¸öÊµÏÖÀà¼Ì³Ð½Ó¿ÚÊ±£¬¿ÉÒÔÊ¹ÓÃ@Autowired£¬½Ó¿ÚÊµÏÖÀà@Service×¢½â¼´¿É¡£
-	//¶à¸öµÄÊ±ºòÊ¹ÓÃ@Resource(name="userService2")À´Ö¸¶¨µ÷ÄÇ¸ö×Ó½Ó¿Ú£¬½Ó¿ÚÊµÏÖÀà@Service("userService2")×¢½â¼´¿É¡£
-//	@Autowired
-//	private UserService userService;
-//	
+
 	@Resource(name="userService")
 	private UserService userService;
 
 	
-	// http://localhost:8080/lyn-ssh/user/addUser.do
-//	@ResponseBody
-//	@RequestMapping(method = RequestMethod.POST, value = "validUser")
-//	public ModelAndView validUser(HttpServletResponse response, String id,String password){
-//		
-//		
-//		ModelAndView model =null;
-//		User user = this.userService.findUser(Integer.parseInt(id));
-//		System.out.println(user.getPassword()+user.getName());
-//		System.out.println(password);
-//		if( !user.getPassword().equals(password)) 
-//			{
-//			     model = new ModelAndView("forward:/jsp/common/sign_in_error.jsp");
-//			     return model;
-//			}
-//		
-//		Cookie foo = new Cookie("id", String.valueOf(user.getId())); //bake cookie
-//		foo.setMaxAge(2000); //set expire time to 1000 sec
-//				
-//		response.addCookie(foo); //put cookie in response 
-//		switch(user.getRole()) {
-//		
-//		case "Manager":
-//			
-//			model = new ModelAndView("forward:/task/mindex.do");
-//			break;
-//		
-//		
-//		}
-//	    
-//		model.addObject("user",user);
-//		return model;
-//	}
+
 	
 
 	@ResponseBody
@@ -120,13 +84,31 @@ public class UserController {
        case 加工经理:
     	   model = new ModelAndView("redirect:/jsp/process/index.do");break;
        default:
-    	   model = new ModelAndView("redirect:/jsp/manager/index.do");break;
+    	   model = new ModelAndView("redirect:profile.do");break;
        }									
 		model.addObject(user);
 		return model;
 		
     }
-
+	@ResponseBody
+	@RequestMapping(method = { RequestMethod.GET, RequestMethod.POST }, value = "updateProfile")  
+    public ModelAndView updateProfile(@ModelAttribute("user") User user,Long id){
+		ModelAndView model = new ModelAndView("redirect:/jsp/user/logout.do");
+		this.userService.upadteUser(user);
+        return model;
+    }
+	
+	@ResponseBody
+	@RequestMapping(method = RequestMethod.GET,value="profile.do")
+	ModelAndView profileHandler(HttpServletRequest request, HttpServletResponse response) {
+		ModelAndView model = new ModelAndView("forward:profile.jsp");
+		HttpSession session = request.getSession();
+		User u = userService.findUser(Long.parseLong(String.valueOf(session.getAttribute("userid"))));
+		
+		model.addObject(u);
+		return model;
+	}
+	
 	@ResponseBody
 	@RequestMapping(method = RequestMethod.GET, value = "logout")
     public ModelAndView logout(HttpServletRequest request,HttpServletResponse response){

@@ -31,7 +31,7 @@
 
 <body>
   <div class="page-404">
-    <p class="text-404">Opps!</p>
+    <p class="text-404">Oops!</p>
      <h2>${message}</h2>
 
     <a href="index.do">返回主界面</a>

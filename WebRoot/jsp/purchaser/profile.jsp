@@ -85,7 +85,7 @@
                     <section class="panel">
                       <div class="panel-body bio-graph-info">
                         <h1> 编辑信息</h1>
-                        <form:form class="form-horizontal" id="update_user_form" role="form" method="post" action="updateUser.do" modelAttribute="user">
+                        <form:form class="form-horizontal" id="update_user_form" role="form" method="post" action="updateProfile.do" modelAttribute="user">
 														<div class="form-group">
 															<label for="exampleInputEmail1" class="col-lg-2 control-label">姓名</label> <div class="col-lg-10">
 															<input name="name" value='${user.name}' class="form-control" id="nameInput1" placeholder="Name">
