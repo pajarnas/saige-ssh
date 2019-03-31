@@ -2,14 +2,17 @@ package com.lyn.model;
 
 import java.sql.Date;
 import java.util.Calendar;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 
@@ -43,7 +46,9 @@ public class User{
 	@Enumerated(EnumType.STRING)
 	private Role role;
 	
-	
+	@OneToMany(fetch = FetchType.EAGER,mappedBy="user")
+	@Column(nullable=true)
+    private List<Task> sub_tasks;
 	
 	private String email;
 	
@@ -62,20 +67,20 @@ public class User{
 	 * @param name
 	 * @param password
 	 * @param role
-	 * @param task_type
+	
 	 * @param email
 	 * @param phone
 	 * @param city
 	 * @param date
 	 */
-	public User(long id, String name, String password, Role role, TaskType task_type, String email, String phone,
+	public User(long id, String name, String password, Role role,  String email, String phone,
 			String city, String date) {
 		super();
 		this.id = id;
 		this.name = name;
 		this.password = password;
 		this.role = role;
-		this.task_type = task_type;
+		
 		this.email = email;
 		this.phone = phone;
 		this.city = city;

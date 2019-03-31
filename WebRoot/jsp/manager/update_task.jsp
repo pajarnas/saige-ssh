@@ -105,9 +105,9 @@
 	                      <div class="col-lg-10">
 	       
 	                        <select name="productid" form="add_task_form" class="form-control m-bot15">
-	                         <option selected="selected" value="${task.product.id}" />${task.product.name}</option>
+	                         <option selected="selected" value="${task.product.id}" />${task.product.name} -- ${task.product.product_type}</option>
 	      										<c:forEach items="${products}" var="product">
-														 <option value="${product.id}" />${product.name}</option>
+														 <option value="${product.id}" />${product.name}--${product.product_type}</option>
 												</c:forEach>
 							</select>
 							
