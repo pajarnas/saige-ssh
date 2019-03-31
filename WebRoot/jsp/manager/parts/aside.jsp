@@ -27,8 +27,9 @@
 			            <ul class="sub"><li> </li><li><a class="" href="user_table.do">用户列表</a></li></ul>
 	          </li>
 	          
+	      
 	          <li class="sub-menu"><a href="javascript:;" class=""><i class="icon_document_alt"></i><span>任务日志</span><span class="menu-arrow arrow_carrot-right"></span></a>
-			            <ul class="sub"><li> </li><li><a class="" href="insert.do">任务日志列表</a></li></ul>
+			            <ul class="sub"><li> </li><li><a class="" href="task_table.do">任务日志列表</a></li></ul>
 	          </li>
 
 	           <li class="sub-menu"><a href="profile.do" class=""> <i class="fa fa-user-md"></i> <span>个人主页</span><span class="menu-arrow arrow_carrot-right"></span></a>

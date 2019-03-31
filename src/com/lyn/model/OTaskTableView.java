@@ -1,17 +1,10 @@
 package com.lyn.model;
 
-import javax.annotation.Resource;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
-import javax.persistence.OneToOne;
 
-import com.lyn.model.Task;
 import com.lyn.model.enums.Priority;
-import com.lyn.model.enums.ProductType;
-import com.lyn.model.enums.Progress;
-import com.lyn.model.enums.Role;
+
 import com.lyn.model.enums.Stage;
-import com.lyn.service.TaskService;
+
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;

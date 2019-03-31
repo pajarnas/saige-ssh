@@ -57,9 +57,9 @@ public class ManagerController {
     
 	@ResponseBody
 	@RequestMapping(method = RequestMethod.GET,value="index.do")
-	ModelAndView indexHandler() {
+	ModelAndView indexHandler(@SessionAttribute("userid")Long userId) {
 		ModelAndView model = new ModelAndView("forward:index.jsp");
-		List<Task> tasks = this.taskService.getTaskList();
+		List<Task> tasks = this.taskService.getTasksWithUser(this.userService.findUser(userId));
 
 	    model.addObject("tasks",tasks);
 	    List<ProgressBar> progress_bars = new ArrayList<ProgressBar>();
@@ -130,7 +130,7 @@ public class ManagerController {
 			ModelAndView mav = new ModelAndView("forward:update_task.jsp");
 			List<Product> products = this.productService.getProductList();
 			mav.addObject("products", products);
-			
+		
 			mav.addObject("task", this.taskService.findTask(id));
 			
 			return mav;
@@ -166,7 +166,14 @@ public class ManagerController {
 		this.userService.upadteUser(user);
         return model;
     }
-	
+	@ResponseBody
+	@RequestMapping(method = { RequestMethod.GET, RequestMethod.POST }, value = "updateProfile")  
+    public ModelAndView updateProfile(@ModelAttribute("user") User user,Long id){
+		
+		ModelAndView model = new ModelAndView("redirect:/lyn-ssh/jsp/user/logout.do");
+		this.userService.upadteUser(user);
+        return model;
+    }
 	
 	@ResponseBody
 	@RequestMapping(method = { RequestMethod.GET, RequestMethod.POST },value="insert")
@@ -191,6 +198,7 @@ public class ManagerController {
 		ptask.setProgress(Progress.未开始);
 		ptask.setStage(Stage.待用料);
 		ptask.setUser(user);
+		ptask.setType(TaskType.生产);
 		
 	  
 		this.taskService.addPTask(ptask);
@@ -206,6 +214,15 @@ public class ManagerController {
 	@RequestMapping(method = { RequestMethod.GET, RequestMethod.POST }, value = "ptask_table")  
     public ModelAndView taskList(){
 		ModelAndView model = new ModelAndView("forward:table_task.jsp");
+		List<PTask> ptasks = taskService.getPTaskList();
+	    model.addObject("ptasks",ptasks);
+        return model;
+    }
+	
+	@ResponseBody
+	@RequestMapping(method = { RequestMethod.GET, RequestMethod.POST }, value = "task_table")  
+    public ModelAndView taskAllList(){
+		ModelAndView model = new ModelAndView("forward:table_task_all.jsp");
 		List<Task> ptasks = taskService.getTaskList();
 	    model.addObject("ptasks",ptasks);
         return model;

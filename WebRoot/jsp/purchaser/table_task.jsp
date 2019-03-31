@@ -44,12 +44,13 @@
 										<th> 数量</th>
 										<th> 任务主管</th>
 										<th>用料\采购人</th>
+										<th>操作</th>
 										<!-- <th>采购人 </th>
 										<th>仓管人 </th>
 										<th>加工人 </th> -->
 										
 									</tr>
-									<c:forEach items="${ptasklist}" var="ptask">
+									<c:forEach items="${ptasks}" var="ptask">
 										<tr>
 											<td><c:out value="${ptask.name}" /></td>
 											<td><c:out value="${ptask.id}" /></td>
@@ -61,7 +62,7 @@
 											<td><c:out value="${ptask.product.name}" /></td>
 											<td><c:out value="${ptask.quality}" /></td>
 											<td><c:out value="${ptask.user.name}" /></td>
-											<td><c:out value="${ptask.other_user.name}" /></td>
+											<td><c:out value="${ptask.pur_user.name}" /></td>
 										 	<td>
 											<div class="btn-group">
 												<a class="btn btn-primary" href="insert.do?ptaskid=${ptask.id }" ><i class="icon_plus_alt2">接管</i></a>  
